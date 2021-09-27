@@ -1,18 +1,34 @@
 package com.example.zunezxapp;
 
+import android.app.Activity;
 import android.app.Application;
 
-public class App extends Application {
+import com.example.zunezxapp.di.DaggerAppComponent;
 
-    private static App instance;
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+
+public class App extends Application implements HasActivityInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
+
+        DaggerAppComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this);
     }
 
-    public static App getInstance() {
-        return instance;
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }

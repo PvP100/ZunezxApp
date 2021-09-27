@@ -1,14 +1,35 @@
 package com.example.zunezxapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.zunezxapp.base.BaseActivity;
+
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int layoutResId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.id.container;
+    }
+
+    @Override
+    protected void initView() {
+        Toast.makeText(this, "jfhdjsf", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 }
