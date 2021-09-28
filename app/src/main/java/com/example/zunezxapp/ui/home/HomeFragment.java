@@ -1,12 +1,12 @@
-package com.example.zunezxapp.ui;
+package com.example.zunezxapp.ui.home;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.databinding.FragmentLoginBinding;
+import com.example.zunezxapp.databinding.FragmentHomeBinding;
 
-public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBinding> {
+public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> {
     @Override
-    protected LoginViewModel creatViewModel() {
+    protected HomeViewModel creatViewModel() {
         return null;
     }
 
@@ -17,7 +17,7 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_login;
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -37,6 +37,7 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
 
     @Override
     protected boolean backPressed() {
+        getVC().backFromAddFragment(null);
         return false;
     }
 }

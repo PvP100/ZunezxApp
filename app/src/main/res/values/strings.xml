@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ZunezxApp</string>
+    <integer name="activity_anim_duration">300</integer>
+    <integer name="activity_anim_duration_out">500</integer>
+    <string-array name="gender">
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
 </resources>

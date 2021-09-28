@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:background="@drawable/search_view_background"
+            android:layout_marginRight="10dp"
+            app:layout_constraintRight_toLeftOf="@+id/ic_cart_home"
+            android:id="@+id/search_view_home"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="42dp" />
+
+        <ImageView
+            app:layout_constraintBottom_toBottomOf="@+id/search_view_home"
+            app:layout_constraintTop_toTopOf="@+id/search_view_home"
+            android:src="@drawable/ic_cart_home"
+            android:layout_marginRight="15dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/ic_cart_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_menu"
+            android:background="#F9F9F9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

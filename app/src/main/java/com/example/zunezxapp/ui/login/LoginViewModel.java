@@ -1,4 +1,4 @@
-package com.example.zunezxapp.ui;
+package com.example.zunezxapp.ui.login;
 
 import com.example.zunezxapp.base.BaseViewModel;
 

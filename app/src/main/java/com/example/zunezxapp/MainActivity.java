@@ -1,12 +1,10 @@
 package com.example.zunezxapp;
 
 
-import android.widget.Toast;
-
 import com.example.zunezxapp.base.BaseActivity;
+import com.example.zunezxapp.ui.splash.SplashFragment;
 
 public class MainActivity extends BaseActivity {
-
 
     @Override
     protected int layoutResId() {
@@ -20,7 +18,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        Toast.makeText(this, "jfhdjsf", Toast.LENGTH_SHORT).show();
+        getViewController().addFragment(SplashFragment.class, null, false, false);
     }
 
     @Override
