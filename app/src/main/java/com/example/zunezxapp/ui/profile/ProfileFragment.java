@@ -1,15 +1,12 @@
-package com.example.zunezxapp.ui.home;
+package com.example.zunezxapp.ui.profile;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.base.ViewController;
-import com.example.zunezxapp.databinding.FragmentHomeBinding;
-import com.example.zunezxapp.ui.splash.SplashFragment;
+import com.example.zunezxapp.databinding.FragmentProfileBinding;
 
-public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> {
-
+public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProfileBinding> {
     @Override
-    protected HomeViewModel creatViewModel() {
+    protected ProfileViewModel creatViewModel() {
         return null;
     }
 
@@ -20,15 +17,17 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_profile;
     }
 
     @Override
     protected void initView() {
+
     }
 
     @Override
     protected void initData() {
+
     }
 
     @Override
@@ -38,7 +37,6 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     protected boolean backPressed() {
-        getVC().backFromAddFragment(null);
         return false;
     }
 }
