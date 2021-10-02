@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_detail"
+            android:id="@+id/img_backgroudn_product_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/view_background_detail"
+            android:background="@drawable/product_detail_background"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="180dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_detail"
+            app:cardCornerRadius="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="@+id/view_background_detail"
+            app:layout_constraintLeft_toLeftOf="@+id/view_background_detail"
+            android:layout_width="110dp"
+            android:layout_height="120dp" >
+
+            <ImageView
+                android:src="@drawable/img_ava_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:textColor="#8C0000"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_background_detail"
+            android:text="850,000đ"
+            app:layout_constraintTop_toBottomOf="@+id/cardview_detail"
+            app:layout_constraintRight_toRightOf="@+id/cardview_detail"
+            app:layout_constraintLeft_toLeftOf="@+id/cardview_detail"
+            android:id="@+id/tv_product_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="16sp"
+            android:id="@+id/tv_product_name_detail"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@+id/cardview_detail"
+            app:layout_constraintLeft_toRightOf="@+id/cardview_detail"
+            android:text="MARU BLAZER (WHITE)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_loai_sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_name_detail"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_product_name_detail"
+            android:text="Loại sản phẩm: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="MARU BLAZER"
+            app:layout_constraintTop_toTopOf="@+id/tv_loai_sp"
+            app:layout_constraintLeft_toRightOf="@+id/tv_loai_sp"
+            android:id="@+id/tv_product_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="Tình trạng: "
+            app:layout_constraintTop_toBottomOf="@+id/tv_loai_sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_loai_sp"
+            android:id="@+id/tv_tinh_trang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            app:layout_constraintLeft_toRightOf="@+id/tv_tinh_trang"
+            app:layout_constraintTop_toTopOf="@+id/tv_tinh_trang"
+            android:text="Còn hàng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tinh_trang"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_tinh_trang"
+            android:text="Kích thước: "
+            android:id="@+id/tv_kich_thuoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginRight="20dp"
+            android:textSize="10sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="Thêm vào giỏ hàng"
+            android:background="@drawable/btn_them_gio_hang"
+            app:layout_constraintRight_toRightOf="@+id/view_background_detail"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_product_name_detail"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_detail_price"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_detail_price"
+            android:id="@+id/btn_them_vao_gio_hang"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
