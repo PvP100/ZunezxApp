@@ -3,6 +3,8 @@ package com.example.zunezxapp.adapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.zunezxapp.base.BaseFragment;
@@ -14,10 +16,10 @@ import java.util.List;
 public class HomeViewPagerAdapter extends FragmentStateAdapter {
 
 
-    private List<BaseFragment> fragmentList = new ArrayList<>();
+    private List<Fragment> fragmentList;
 
-    public HomeViewPagerAdapter(@NonNull MainFragment fragmentActivity, List<BaseFragment> fragmentList) {
-        super(fragmentActivity);
+    public HomeViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Fragment> fragmentList) {
+        super(fragmentManager, lifecycle);
         this.fragmentList = fragmentList;
     }
 

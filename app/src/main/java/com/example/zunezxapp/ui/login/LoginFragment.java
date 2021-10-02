@@ -6,6 +6,7 @@ import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentLoginBinding;
 import com.example.zunezxapp.ui.home.HomeFragment;
+import com.example.zunezxapp.ui.main.MainFragment;
 import com.example.zunezxapp.ui.register.RegisterFragment;
 
 public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBinding> implements View.OnClickListener {
@@ -48,7 +49,7 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
     @Override
     public void onClick(View view) {
         if (view == binding.btnLogin) {
-            getVC().addFragment(HomeFragment.class, null, true, true);
+            getVC().addFragment(MainFragment.class, null, true, true);
         }
         if (view == binding.tvDangKyLogin) {
             getVC().addFragment(RegisterFragment.class, null, true, true);
