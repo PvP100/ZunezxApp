@@ -40,7 +40,7 @@ public class SplashFragment extends BaseFragment<SplashViewModel, SplashScreenBi
             public void run() {
                 getVC().replaceFragment(LoginFragment.class, null);
             }
-        }, 3000);
+        }, 2000);
     }
 
     @Override

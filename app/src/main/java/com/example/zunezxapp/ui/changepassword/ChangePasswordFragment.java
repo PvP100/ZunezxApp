@@ -1,12 +1,12 @@
-package com.example.zunezxapp.ui.register;
+package com.example.zunezxapp.ui.changepassword;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.databinding.FragmentRegisterBinding;
+import com.example.zunezxapp.databinding.FragmentChangePasswordBinding;
 
-public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRegisterBinding> {
+public class ChangePasswordFragment extends BaseFragment<ChangePasswordViewmodel, FragmentChangePasswordBinding> {
     @Override
-    protected RegisterViewModel creatViewModel() {
+    protected ChangePasswordViewmodel creatViewModel() {
         return null;
     }
 
@@ -17,7 +17,7 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_register;
+        return R.layout.fragment_change_password;
     }
 
     @Override

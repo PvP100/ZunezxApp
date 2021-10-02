@@ -1,12 +1,13 @@
-package com.example.zunezxapp.ui.register;
+package com.example.zunezxapp.ui.history;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.databinding.FragmentRegisterBinding;
+import com.example.zunezxapp.base.BaseViewModel;
+import com.example.zunezxapp.databinding.FragmentHistoryBinding;
 
-public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRegisterBinding> {
+public class HistoryFragment extends BaseFragment<BaseViewModel, FragmentHistoryBinding> {
     @Override
-    protected RegisterViewModel creatViewModel() {
+    protected BaseViewModel creatViewModel() {
         return null;
     }
 
@@ -17,7 +18,7 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_register;
+        return R.layout.fragment_history;
     }
 
     @Override
@@ -37,7 +38,6 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
 
     @Override
     protected boolean backPressed() {
-        getVC().backFromAddFragment(null);
         return false;
     }
 }
