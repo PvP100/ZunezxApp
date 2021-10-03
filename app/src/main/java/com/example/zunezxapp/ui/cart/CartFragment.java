@@ -48,7 +48,7 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
     @Override
     public void onClick(View view) {
         if (view == binding.btnMuaHangCart) {
-            getVC().addFragment(ConfirmFragment.class, null, true, false);
+            getVC().addFragment(ConfirmFragment.class, null, true, true);
         } else {
             getVC().backFromAddFragment(null);
         }

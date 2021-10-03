@@ -49,10 +49,10 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
     @Override
     public void onClick(View view) {
         if (view == binding.btnLogin) {
-            getVC().addFragment(MainFragment.class, null, true, false);
+            getVC().replaceFragment(MainFragment.class, null);
         }
         if (view == binding.tvDangKyLogin) {
-            getVC().addFragment(RegisterFragment.class, null, true, false);
+            getVC().addFragment(RegisterFragment.class, null, true, true);
         }
     }
 }

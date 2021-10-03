@@ -1,6 +1,7 @@
 package com.example.zunezxapp.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,12 +19,14 @@ public class HomeAdapter extends BaseAdapter<HomeFragmentItemBinding> {
 
     private List<Home> homes = new ArrayList<>();
     private HomeCategoryAdapter adapter;
+    private OnGetAllCLickListener onClick;
 
     @Inject
     Context context;
 
-    public HomeAdapter(HomeCategoryAdapter adapter) {
+    public HomeAdapter(HomeCategoryAdapter adapter, OnGetAllCLickListener onClick) {
         this.adapter = adapter;
+        this.onClick = onClick;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class HomeAdapter extends BaseAdapter<HomeFragmentItemBinding> {
 
     @Override
     protected BaseViewHolder solvedOnCreateViewHolder(HomeFragmentItemBinding binding) {
-        return new HomeViewHolder(binding);
+        return new HomeViewHolder(binding, onClick);
     }
 
     @Override
@@ -51,12 +54,14 @@ public class HomeAdapter extends BaseAdapter<HomeFragmentItemBinding> {
         return 5;
     }
 
-    private class HomeViewHolder extends BaseViewHolder<Home> {
+    private class HomeViewHolder extends BaseViewHolder<Home> implements View.OnClickListener {
         HomeFragmentItemBinding binding;
+        OnGetAllCLickListener onGetAllCLickListener;
 
-        public HomeViewHolder(HomeFragmentItemBinding binding) {
+        public HomeViewHolder(HomeFragmentItemBinding binding, OnGetAllCLickListener onGetAllCLickListener) {
             super(binding.getRoot());
             this.binding = binding;
+            this.onGetAllCLickListener = onGetAllCLickListener;
         }
 
         @Override
@@ -65,7 +70,17 @@ public class HomeAdapter extends BaseAdapter<HomeFragmentItemBinding> {
 //                binding.tvCategoryTitle.setText("dsfsdfsfds");
                 binding.rcvItem.setAdapter(adapter);
                 binding.rcvItem.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                binding.tvXemTatCa.setOnClickListener(this);
             }
         }
+
+        @Override
+        public void onClick(View view) {
+            onGetAllCLickListener.onGetAllClick();
+        }
+    }
+
+    public interface OnGetAllCLickListener {
+        void onGetAllClick();
     }
 }

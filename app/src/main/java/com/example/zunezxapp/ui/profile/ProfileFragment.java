@@ -7,6 +7,7 @@ import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentProfileBinding;
 import com.example.zunezxapp.ui.changepassword.ChangePasswordFragment;
+import com.example.zunezxapp.ui.login.LoginFragment;
 
 public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProfileBinding> implements View.OnClickListener {
     @Override
@@ -48,9 +49,9 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
     @Override
     public void onClick(View view) {
         if (view == binding.btnChangePasswordProfile) {
-            getVC().addFragment(ChangePasswordFragment.class, null, true, false);
+            getVC().addFragment(ChangePasswordFragment.class, null, true, true);
         } else if (view == binding.icLogout) {
-            getVC().backFromAddFragment(null);
+            getVC().replaceFragment(LoginFragment.class, null);
         }
     }
 }

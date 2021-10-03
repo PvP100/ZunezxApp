@@ -46,7 +46,7 @@ public class MainFragment extends BaseFragment<MainViewModel, FragmentMainBindin
 
     @Override
     protected void initListener() {
-        binding.bottomNaviMain.setOnNavigationItemSelectedListener(it -> {
+        binding.bottomNaviMain.setOnItemSelectedListener(it -> {
             switch (it.getItemId()) {
                 case R.id.home_page_fragment:
                     binding.viewpagerMain.setCurrentItem(0);

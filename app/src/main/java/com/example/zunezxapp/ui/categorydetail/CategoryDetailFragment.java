@@ -1,12 +1,12 @@
-package com.example.zunezxapp.ui.productdetail;
+package com.example.zunezxapp.ui.categorydetail;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.databinding.FragmentProductDetailBinding;
+import com.example.zunezxapp.databinding.FragmentCategoryBinding;
 
-public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, FragmentProductDetailBinding> {
+public class CategoryDetailFragment extends BaseFragment<CategoryViewModel, FragmentCategoryBinding> {
     @Override
-    protected ProductDetailViewModel creatViewModel() {
+    protected CategoryViewModel creatViewModel() {
         return null;
     }
 
@@ -17,7 +17,7 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_product_detail;
+        return R.layout.fragment_category;
     }
 
     @Override

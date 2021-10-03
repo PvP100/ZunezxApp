@@ -12,9 +12,11 @@ import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.base.ViewController;
 import com.example.zunezxapp.databinding.FragmentHomeBinding;
 import com.example.zunezxapp.ui.cart.CartFragment;
+import com.example.zunezxapp.ui.categorydetail.CategoryDetailFragment;
+import com.example.zunezxapp.ui.productdetail.ProductDetailFragment;
 import com.example.zunezxapp.ui.splash.SplashFragment;
 
-public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener {
+public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener, HomeCategoryAdapter.SetOnCategoryOnClick, HomeAdapter.OnGetAllCLickListener {
 
     private HomeAdapter homeAdapter;
     private HomeCategoryAdapter homeCategoryAdapter;
@@ -37,7 +39,8 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
     @Override
     protected void initView() {
         homeCategoryAdapter = new HomeCategoryAdapter();
-        homeAdapter = new HomeAdapter(homeCategoryAdapter);
+        homeCategoryAdapter.setCateListener(this);
+        homeAdapter = new HomeAdapter(homeCategoryAdapter, this);
         binding.rcvHome.setAdapter(homeAdapter);
         binding.rcvHome.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
@@ -60,7 +63,17 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
     @Override
     public void onClick(View view) {
         if (view == binding.icCartHome) {
-            getVC().addFragment(CartFragment.class, null, true, false);
+            getVC().addFragment(CartFragment.class, null, true, true);
         }
+    }
+
+    @Override
+    public void onCateOnClick() {
+        getVC().addFragment(ProductDetailFragment.class, null, true, true);
+    }
+
+    @Override
+    public void onGetAllClick() {
+        getVC().addFragment(CategoryDetailFragment.class, null, true, true);
     }
 }

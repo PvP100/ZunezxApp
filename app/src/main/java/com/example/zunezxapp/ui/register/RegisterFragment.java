@@ -49,7 +49,7 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
     @Override
     public void onClick(View view) {
         if (view == binding.btnRegister) {
-            getVC().addFragment(MainFragment.class, null, true, false);
+            getVC().addFragment(MainFragment.class, null, true, true);
         } else if (view == binding.tvDangNhapRegis) {
             getVC().backFromAddFragment(null);
         }
