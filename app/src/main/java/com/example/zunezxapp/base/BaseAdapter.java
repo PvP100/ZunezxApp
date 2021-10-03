@@ -11,29 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected T binding;
+public abstract class BaseAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<BaseAdapter.BaseViewHolder> {
 
     protected abstract int getLayoutId();
 
-    protected abstract RecyclerView.ViewHolder solvedOnCreateViewHolder(T binding);
-    protected abstract void solvedOnBindViewHolder(RecyclerView.ViewHolder holder,int position);
+    protected abstract BaseViewHolder solvedOnCreateViewHolder(T binding);
+    protected abstract void solvedOnBindViewHolder(BaseViewHolder holder, int position);
 
     @NonNull
     @NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        binding = DataBindingUtil.inflate(layoutInflater, getLayoutId(), parent, false);
+        T binding = DataBindingUtil.inflate(layoutInflater, getLayoutId(), parent, false);
         return solvedOnCreateViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
-        solvedOnBindViewHolder(holder,position);
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        solvedOnBindViewHolder(holder, position);
     }
 
-    protected abstract class BaseViewHolder<U> extends RecyclerView.ViewHolder {
+    protected static abstract class BaseViewHolder<U> extends RecyclerView.ViewHolder {
 
         public BaseViewHolder(View view) {
             super(view);

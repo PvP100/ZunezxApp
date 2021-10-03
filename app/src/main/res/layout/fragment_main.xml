@@ -8,12 +8,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:id="@+id/container"
         tools:context=".MainActivity"
         android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
+            app:userInputEnabled="@{false}"
             android:id="@+id/viewpager_main"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navi_main"
@@ -25,6 +27,7 @@
             app:menu="@menu/bottom_menu"
             app:labelVisibilityMode="unlabeled"
             android:id="@+id/bottom_navi_main"
+            app:itemIconTint="@drawable/custom_icon_bottom_navi"
             android:background="#F9F9F9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

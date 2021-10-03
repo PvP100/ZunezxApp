@@ -48,7 +48,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
     @Override
     public void onClick(View view) {
         if (view == binding.btnChangePasswordProfile) {
-            getVC().addFragment(ChangePasswordFragment.class, null, true, true);
+            getVC().addFragment(ChangePasswordFragment.class, null, true, false);
         } else if (view == binding.icLogout) {
             getVC().backFromAddFragment(null);
         }

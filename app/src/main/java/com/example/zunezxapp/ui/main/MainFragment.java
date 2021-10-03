@@ -88,8 +88,7 @@ public class MainFragment extends BaseFragment<MainViewModel, FragmentMainBindin
 
     @Override
     protected boolean backPressed() {
-        getVC().backFromAddFragment(null);
-        return false;
+        return true;
     }
 
     private List<Fragment> listFragment() {
