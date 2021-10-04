@@ -2,12 +2,18 @@ package com.example.zunezxapp.ui.cart;
 
 import android.view.View;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.zunezxapp.R;
+import com.example.zunezxapp.adapter.CartAdapter;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentCartBinding;
 import com.example.zunezxapp.ui.confirm.ConfirmFragment;
 
 public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBinding> implements View.OnClickListener {
+
+    private CartAdapter cartAdapter;
+
     @Override
     protected CartViewModel creatViewModel() {
         return null;
@@ -25,7 +31,9 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
 
     @Override
     protected void initView() {
-
+        cartAdapter = new CartAdapter();
+        binding.rcvCart.setAdapter(cartAdapter);
+        binding.rcvCart.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     @Override

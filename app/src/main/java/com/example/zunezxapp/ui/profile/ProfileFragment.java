@@ -38,6 +38,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
     @Override
     protected void initListener() {
         binding.btnChangePasswordProfile.setOnClickListener(this);
+        binding.btnChinhSuaHoSo.setOnClickListener(this);
+        binding.icCancel.setOnClickListener(this);
         binding.icLogout.setOnClickListener(this);
     }
 
@@ -52,6 +54,24 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
             getVC().addFragment(ChangePasswordFragment.class, null, true, true);
         } else if (view == binding.icLogout) {
             getVC().replaceFragment(LoginFragment.class, null);
+        } else if (view == binding.icCancel) {
+            binding.icLogout.setVisibility(View.VISIBLE);
+            binding.icCancel.setVisibility(View.INVISIBLE);
+            binding.icUpdate.setVisibility(View.INVISIBLE);
+            binding.edtEmailUserProfile.setEnabled(false);
+            binding.edtAddressUserProfile.setEnabled(false);
+            binding.edtBirthdayUserProfile.setEnabled(false);
+            binding.edtGenderUserProfile.setEnabled(false);
+            binding.edtPhoneUserProfile.setEnabled(false);
+        } else if (view == binding.btnChinhSuaHoSo) {
+            binding.icLogout.setVisibility(View.INVISIBLE);
+            binding.icCancel.setVisibility(View.VISIBLE);
+            binding.icUpdate.setVisibility(View.VISIBLE);
+            binding.edtEmailUserProfile.setEnabled(true);
+            binding.edtAddressUserProfile.setEnabled(true);
+            binding.edtBirthdayUserProfile.setEnabled(true);
+            binding.edtGenderUserProfile.setEnabled(true);
+            binding.edtPhoneUserProfile.setEnabled(true);
         }
     }
 }

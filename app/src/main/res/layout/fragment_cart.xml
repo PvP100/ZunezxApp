@@ -33,6 +33,7 @@
             android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_cart"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_tong_title_cart"
             tools:listitem="@layout/cart_item"

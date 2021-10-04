@@ -6,273 +6,342 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
-        <View
-            android:id="@+id/view_background_profile"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/background_profile"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            app:layout_constraintVertical_chainStyle="packed"
-            app:chainUseRtl="true"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/white"
-            android:src="@drawable/zune_logo"
-            app:layout_constraintBottom_toTopOf="@+id/tv_name_profile"
-            app:layout_constraintTop_toTopOf="@+id/view_background_profile"
-            app:layout_constraintRight_toRightOf="@+id/view_background_profile"
-            app:layout_constraintLeft_toLeftOf="@+id/view_background_profile"
-            android:id="@+id/img_ava_profile"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-
-        <ImageView
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/ic_logout"
-            android:id="@+id/ic_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            app:layout_constraintRight_toRightOf="@+id/img_ava_profile"
-            app:layout_constraintLeft_toLeftOf="@+id/img_ava_profile"
-            app:layout_constraintTop_toBottomOf="@+id/img_ava_profile"
-            android:textSize="24sp"
-            android:id="@+id/tv_name_profile"
-            app:layout_constraintBottom_toTopOf="@+id/btn_chinh_sua_ho_so"
-            android:textColor="@color/white"
-            android:text="Phạm Việt Phong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:layout_marginTop="10dp"
-            android:id="@+id/btn_chinh_sua_ho_so"
-            app:layout_constraintBottom_toBottomOf="@+id/view_background_profile"
-            android:textAllCaps="false"
-            android:background="@drawable/custom_btn_chinh_ho_so"
-            app:layout_constraintRight_toRightOf="@+id/tv_name_profile"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_name_profile"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_profile"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:text="Chỉnh sửa hồ sơ"
-            android:layout_width="122dp"
-            android:layout_height="23dp" />
-
-        <ScrollView
-            android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@id/view_background_profile"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="0dp" >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <View
+                android:id="@+id/view_background_profile"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/background_profile"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="300dp" />
 
-                <ImageView
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/ic_mail"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/ic_email_profile"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:layout_constraintVertical_chainStyle="packed"
+                app:chainUseRtl="true"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/white"
+                android:src="@drawable/zune_logo"
+                app:layout_constraintBottom_toTopOf="@+id/edt_name_profile"
+                app:layout_constraintTop_toTopOf="@+id/view_background_profile"
+                app:layout_constraintRight_toRightOf="@+id/view_background_profile"
+                app:layout_constraintLeft_toLeftOf="@+id/view_background_profile"
+                android:id="@+id/img_ava_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_email_profile"
-                    app:layout_constraintTop_toTopOf="@+id/ic_email_profile"
-                    android:text="Email"
-                    android:id="@+id/tv_email_profile"
-                    app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_logout"
+                android:id="@+id/ic_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/tv_email_user_profile"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@+id/tv_email_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_email_profile"
-                    android:textSize="16sp"
-                    android:text="phamvietphong3001@gmail.com"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:visibility="invisible"
+                android:src="@drawable/ic_cancel"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/ic_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <View
-                    android:id="@+id/line_1"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:background="#DDDDDD"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_email_user_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp" />
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_confirm"
+                android:id="@+id/ic_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:src="@drawable/ic_phone"
-                    app:layout_constraintTop_toBottomOf="@+id/line_1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/ic_phone_profile"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="@+id/img_ava_profile"
+                app:layout_constraintLeft_toLeftOf="@+id/img_ava_profile"
+                app:layout_constraintTop_toBottomOf="@+id/img_ava_profile"
+                android:textSize="24sp"
+                android:id="@+id/edt_name_profile"
+                app:layout_constraintBottom_toTopOf="@+id/btn_chinh_sua_ho_so"
+                android:textColor="@color/white"
+                android:text="Phạm Việt Phong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_phone_profile"
-                    app:layout_constraintTop_toTopOf="@+id/ic_phone_profile"
-                    android:text="Số điện thoại"
-                    android:id="@+id/tv_phone_profile"
-                    app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/btn_chinh_sua_ho_so"
+                app:layout_constraintBottom_toBottomOf="@+id/view_background_profile"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_btn_chinh_ho_so"
+                app:layout_constraintRight_toRightOf="@+id/edt_name_profile"
+                app:layout_constraintLeft_toLeftOf="@+id/edt_name_profile"
+                app:layout_constraintTop_toBottomOf="@+id/edt_name_profile"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="Chỉnh sửa hồ sơ"
+                android:layout_width="122dp"
+                android:layout_height="23dp" />
 
-                <TextView
-                    android:id="@+id/tv_phone_user_profile"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@+id/tv_phone_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_phone_profile"
-                    android:textSize="16sp"
-                    android:text="0396550949"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                app:layout_constraintTop_toBottomOf="@+id/view_background_profile"
+                android:src="@drawable/ic_mail"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/ic_email_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
 
-                <View
-                    android:id="@+id/line_2"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:background="#DDDDDD"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_phone_user_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_email_profile"
+                app:layout_constraintTop_toTopOf="@+id/ic_email_profile"
+                android:text="Email"
+                android:id="@+id/tv_email_profile"
+                app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:src="@drawable/ic_gender"
-                    app:layout_constraintTop_toBottomOf="@+id/line_2"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/ic_gender_profile"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:id="@+id/edt_email_user_profile"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_email_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email_profile"
+                android:textSize="16sp"
+                android:text="phamvietphong3001@gmail.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_gender_profile"
-                    app:layout_constraintTop_toTopOf="@+id/ic_gender_profile"
-                    android:text="Giới tính"
-                    android:id="@+id/tv_gender_profile"
-                    app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/line_1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#DDDDDD"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edt_email_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
 
-                <TextView
-                    android:id="@+id/tv_gender_user_profile"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@+id/tv_gender_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_gender_profile"
-                    android:textSize="16sp"
-                    android:text="Nam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/ic_phone"
+                app:layout_constraintTop_toBottomOf="@+id/line_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/ic_phone_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
 
-                <View
-                    android:id="@+id/line_3"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:background="#DDDDDD"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_gender_user_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_phone_profile"
+                app:layout_constraintTop_toTopOf="@+id/ic_phone_profile"
+                android:text="Số điện thoại"
+                android:id="@+id/tv_phone_profile"
+                app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:src="@drawable/ic_birthday"
-                    app:layout_constraintTop_toBottomOf="@+id/line_3"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/ic_birthday_profile"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:id="@+id/edt_phone_user_profile"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_phone_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_profile"
+                android:textSize="16sp"
+                android:text="0396550949"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_birthday_profile"
-                    app:layout_constraintTop_toTopOf="@+id/ic_birthday_profile"
-                    android:text="Ngày sinh"
-                    android:id="@+id/tv_birthday_profile"
-                    app:layout_constraintLeft_toRightOf="@+id/ic_birthday_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/line_2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#DDDDDD"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edt_phone_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
 
-                <TextView
-                    android:id="@+id/tv_birthday_user_profile"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="@+id/tv_birthday_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_birthday_profile"
-                    android:textSize="16sp"
-                    android:text="30/01/2000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/ic_gender"
+                app:layout_constraintTop_toBottomOf="@+id/line_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/ic_gender_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
 
-                <View
-                    android:id="@+id/line_4"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:background="#DDDDDD"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_birthday_user_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_gender_profile"
+                app:layout_constraintTop_toTopOf="@+id/ic_gender_profile"
+                android:text="Giới tính"
+                android:id="@+id/tv_gender_profile"
+                app:layout_constraintLeft_toRightOf="@+id/ic_email_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <Button
-                    android:textColor="@color/white"
-                    android:background="#8C0000"
-                    android:textAllCaps="false"
-                    android:text="Đổi mật khẩu"
-                    app:layout_constraintTop_toBottomOf="@id/line_4"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:id="@+id/btn_change_password_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:id="@+id/edt_gender_user_profile"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_gender_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gender_profile"
+                android:textSize="16sp"
+                android:text="Nam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/line_3"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#DDDDDD"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edt_gender_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
+
+            <ImageView
+                android:src="@drawable/ic_birthday"
+                app:layout_constraintTop_toBottomOf="@+id/line_3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/ic_birthday_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_birthday_profile"
+                app:layout_constraintTop_toTopOf="@+id/ic_birthday_profile"
+                android:text="Ngày sinh"
+                android:id="@+id/tv_birthday_profile"
+                app:layout_constraintLeft_toRightOf="@+id/ic_birthday_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:id="@+id/edt_birthday_user_profile"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_birthday_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_birthday_profile"
+                android:textSize="16sp"
+                android:text="30/01/2000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/line_4"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#DDDDDD"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edt_birthday_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
+
+            <ImageView
+                android:src="@drawable/ic_birthday"
+                app:layout_constraintTop_toBottomOf="@+id/line_4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/ic_address_profile"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_address_profile"
+                app:layout_constraintTop_toTopOf="@+id/ic_address_profile"
+                android:text="Địa chỉ"
+                android:id="@+id/tv_address_profile"
+                app:layout_constraintLeft_toRightOf="@+id/ic_address_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:id="@+id/edt_address_user_profile"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_address_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address_profile"
+                android:textSize="16sp"
+                android:text="Số 48 Quán Thánh, Ba Đình, Hà Nội"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/line_5"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#DDDDDD"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edt_address_user_profile"
+                android:layout_width="0dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:textColor="@color/white"
+                android:background="#8C0000"
+                android:textAllCaps="false"
+                android:text="Đổi mật khẩu"
+                app:layout_constraintTop_toBottomOf="@id/line_5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/btn_change_password_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>
