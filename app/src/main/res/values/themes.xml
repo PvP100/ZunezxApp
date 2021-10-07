@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">#8C0000</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Progressbar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:progressDrawable">@drawable/custom_progess_bar</item>
+        <item name="android:indeterminateDrawable">@drawable/custom_progess_bar</item>
+    </style>
 </resources>

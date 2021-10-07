@@ -1,5 +1,6 @@
 package com.example.zunezxapp.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,9 @@ import com.example.zunezxapp.custom.LoadingDialog;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
+
 public abstract class BaseFragment<VM extends BaseViewModel, T extends ViewDataBinding> extends Fragment {
 
     private ViewController viewController = null;
@@ -30,6 +34,12 @@ public abstract class BaseFragment<VM extends BaseViewModel, T extends ViewDataB
     protected T binding;
 
     protected LoadingDialog loadingDialog;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override
@@ -46,6 +56,12 @@ public abstract class BaseFragment<VM extends BaseViewModel, T extends ViewDataB
         initView();
         initData();
         initListener();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        loadingDialog.dismiss();
     }
 
     protected abstract void backFromAddFragment();

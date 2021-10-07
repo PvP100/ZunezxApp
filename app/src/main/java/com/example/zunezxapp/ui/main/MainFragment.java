@@ -1,7 +1,5 @@
 package com.example.zunezxapp.ui.main;
 
-import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -14,12 +12,11 @@ import com.example.zunezxapp.ui.home.HomeFragment;
 import com.example.zunezxapp.ui.profile.ProfileFragment;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class MainFragment extends BaseFragment<MainViewModel, FragmentMainBinding> {
+public class MainFragment extends BaseFragment<MainFragmentViewModel, FragmentMainBinding> {
     @Override
-    protected MainViewModel creatViewModel() {
+    protected MainFragmentViewModel creatViewModel() {
         return null;
     }
 

@@ -1,18 +1,21 @@
 package com.example.zunezxapp.ui.login;
 
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentLoginBinding;
-import com.example.zunezxapp.ui.home.HomeFragment;
 import com.example.zunezxapp.ui.main.MainFragment;
 import com.example.zunezxapp.ui.register.RegisterFragment;
 
 public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBinding> implements View.OnClickListener {
+
     @Override
     protected LoginViewModel creatViewModel() {
-        return null;
+        return new ViewModelProvider(this, viewModelFactory).get(LoginViewModel.class);
     }
 
     @Override
@@ -27,7 +30,13 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
 
     @Override
     protected void initView() {
-
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
     }
 
     @Override
@@ -49,7 +58,12 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
     @Override
     public void onClick(View view) {
         if (view == binding.btnLogin) {
-            getVC().replaceFragment(MainFragment.class, null);
+            viewModel.userLogin(binding.edtUsername.getText().toString().trim(), binding.edtPassword.getText().toString().trim());
+            viewModel.getMessage().observe(this, it -> {
+                if (it) {
+                    getVC().replaceFragment(MainFragment.class, null);
+                }
+            });
         }
         if (view == binding.tvDangKyLogin) {
             getVC().addFragment(RegisterFragment.class, null, true, true);

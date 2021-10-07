@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.zunezxapp.App;
 import com.example.zunezxapp.di.module.ActivityBindingModule;
 import com.example.zunezxapp.di.module.AppModule;
+import com.example.zunezxapp.di.module.FragmentBindingModule;
 import com.example.zunezxapp.di.module.NetworkModule;
 import com.example.zunezxapp.di.module.ViewModelModule;
 
@@ -16,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
+        FragmentBindingModule.class,
         AndroidSupportInjectionModule.class,
         ActivityBindingModule.class,
         AppModule.class,

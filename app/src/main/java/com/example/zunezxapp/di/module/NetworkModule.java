@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private static final String URL = "https://jsonplaceholder.typicode.com/";
+    private static final String URL = "https://test-api-spring-boot.herokuapp.com";
 
 
     @Provides

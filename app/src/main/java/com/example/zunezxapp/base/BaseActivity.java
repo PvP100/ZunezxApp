@@ -1,18 +1,9 @@
 package com.example.zunezxapp.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.zunezxapp.custom.LoadingDialog;
-
-import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
