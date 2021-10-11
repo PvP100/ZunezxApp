@@ -4,7 +4,7 @@ package com.example.zunezxapp.adapter;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.ConfirmOrderItemBinding;
-import com.example.zunezxapp.entity.Product;
+import com.example.zunezxapp.entity.HomeProduct;
 
 public class ConfirmAdapter extends BaseAdapter<ConfirmOrderItemBinding> {
     @Override
@@ -27,7 +27,7 @@ public class ConfirmAdapter extends BaseAdapter<ConfirmOrderItemBinding> {
         return 5;
     }
 
-    class ConfirmViewHolder extends BaseViewHolder<Product> {
+    class ConfirmViewHolder extends BaseViewHolder<HomeProduct> {
 
         ConfirmOrderItemBinding binding;
 
@@ -37,7 +37,7 @@ public class ConfirmAdapter extends BaseAdapter<ConfirmOrderItemBinding> {
         }
 
         @Override
-        protected void bind(Product data) {
+        protected void bind(HomeProduct data) {
 
         }
     }

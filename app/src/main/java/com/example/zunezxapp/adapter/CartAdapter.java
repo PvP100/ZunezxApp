@@ -6,18 +6,18 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.CartItemBinding;
-import com.example.zunezxapp.entity.Product;
+import com.example.zunezxapp.entity.HomeProduct;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends BaseAdapter<CartItemBinding> {
 
-    private List<Product> list = new ArrayList<>();
+    private List<HomeProduct> list = new ArrayList<>();
 
     private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-    public void setListCart(List<Product> list) {
+    public void setListCart(List<HomeProduct> list) {
         this.list = list;
     }
 
@@ -43,7 +43,7 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
         return 5;
     }
 
-    class OrderViewHolder extends BaseViewHolder<Product> implements View.OnClickListener {
+    class OrderViewHolder extends BaseViewHolder<HomeProduct> implements View.OnClickListener {
 
         CartItemBinding binding;
         int count = 1;
@@ -54,7 +54,7 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
         }
 
         @Override
-        protected void bind(Product data) {
+        protected void bind(HomeProduct data) {
             binding.icMinusCartItem.setOnClickListener(this);
             binding.icPlusCartItem.setOnClickListener(this);
         }

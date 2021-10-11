@@ -1,11 +1,9 @@
 package com.example.zunezxapp.adapter;
 
-import android.view.View;
-
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.CategoryItemBinding;
-import com.example.zunezxapp.entity.Product;
+import com.example.zunezxapp.entity.HomeProduct;
 
 public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
     @Override
@@ -28,7 +26,7 @@ public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
         return 10;
     }
 
-    class CategoryDetailViewHolder extends BaseViewHolder<Product> {
+    class CategoryDetailViewHolder extends BaseViewHolder<HomeProduct> {
 
         CategoryItemBinding binding;
 
@@ -38,7 +36,7 @@ public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
         }
 
         @Override
-        protected void bind(Product data) {
+        protected void bind(HomeProduct data) {
 
         }
     }

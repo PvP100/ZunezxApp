@@ -6,7 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.zunezxapp.di.ViewModelFactory;
 import com.example.zunezxapp.di.ViewModelKey;
+import com.example.zunezxapp.ui.home.HomeViewModel;
 import com.example.zunezxapp.ui.login.LoginViewModel;
+import com.example.zunezxapp.ui.productdetail.ProductDetailViewModel;
+import com.example.zunezxapp.ui.profile.ProfileViewModel;
+import com.example.zunezxapp.ui.splash.SplashViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -19,7 +23,27 @@ public abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel.class)
-    abstract ViewModel bindMainViewModel(LoginViewModel viewModel);
+    abstract ViewModel bindLoginViewModel(LoginViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel.class)
+    abstract ViewModel bindProfileViewModel(ProfileViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel.class)
+    abstract ViewModel bindSplashViewModel(SplashViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel.class)
+    abstract ViewModel bindHomeViewModel(HomeViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductDetailViewModel.class)
+    abstract ViewModel bindProductDetailViewModel(ProductDetailViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

@@ -12,7 +12,6 @@
 
         <ImageView
             android:scaleType="centerCrop"
-            android:src="@drawable/img_detail"
             android:id="@+id/img_backgroudn_product_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -40,7 +39,8 @@
             android:layout_height="120dp" >
 
             <ImageView
-                android:src="@drawable/img_ava_detail"
+                android:scaleType="centerCrop"
+                android:id="@+id/img_ava_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>

@@ -1,29 +1,30 @@
 package com.example.zunezxapp.ui.home;
 
+import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.zunezxapp.R;
+import com.example.zunezxapp.adapter.CategoryAdapter;
 import com.example.zunezxapp.adapter.HomeAdapter;
-import com.example.zunezxapp.adapter.HomeCategoryAdapter;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.base.ViewController;
+import com.example.zunezxapp.custom.GridSpacingItemDecoration;
 import com.example.zunezxapp.databinding.FragmentHomeBinding;
 import com.example.zunezxapp.ui.cart.CartFragment;
 import com.example.zunezxapp.ui.categorydetail.CategoryDetailFragment;
 import com.example.zunezxapp.ui.productdetail.ProductDetailFragment;
-import com.example.zunezxapp.ui.splash.SplashFragment;
 
-public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener, HomeCategoryAdapter.SetOnCategoryOnClick, HomeAdapter.OnGetAllCLickListener {
+public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener, HomeAdapter.OnGetAllCLickListener {
 
     private HomeAdapter homeAdapter;
-    private HomeCategoryAdapter homeCategoryAdapter;
+    private CategoryAdapter categoryAdapter;
 
     @Override
     protected HomeViewModel creatViewModel() {
-        return null;
+        return new ViewModelProvider(this, viewModelFactory).get(HomeViewModel.class);
     }
 
     @Override
@@ -38,11 +39,21 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     protected void initView() {
-        homeCategoryAdapter = new HomeCategoryAdapter();
-        homeCategoryAdapter.setCateListener(this);
-        homeAdapter = new HomeAdapter(homeCategoryAdapter, this);
+        viewModel.getCategory();
+        categoryAdapter = new CategoryAdapter();
+        homeAdapter = new HomeAdapter(this);
+        viewModel.getListHomeCate().observe(this, it -> {
+            categoryAdapter.setHomeCategoryList(it);
+        });
+        viewModel.getHomeProduct();
+        viewModel.getListHomeProduct().observe(this, it -> {
+            homeAdapter.setHome(it);
+        });
+        binding.rcvAllHome.setAdapter(categoryAdapter);
+        binding.rcvAllHome.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.rcvHome.setAdapter(homeAdapter);
-        binding.rcvHome.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rcvHome.addItemDecoration(new GridSpacingItemDecoration(2, 50, true));
+        binding.rcvHome.setLayoutManager(new GridLayoutManager(requireContext(), 2));
     }
 
     @Override
@@ -68,12 +79,9 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
     }
 
     @Override
-    public void onCateOnClick() {
-        getVC().addFragment(ProductDetailFragment.class, null, true, true);
-    }
-
-    @Override
-    public void onGetAllClick() {
-        getVC().addFragment(CategoryDetailFragment.class, null, true, true);
+    public void onGetAllClick(String productId) {
+        Bundle bundle = new Bundle();
+        bundle.putString("productId", productId);
+        getVC().addFragment(ProductDetailFragment.class, bundle, true, true);
     }
 }

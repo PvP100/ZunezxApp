@@ -6,12 +6,14 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.zunezxapp.base.BaseViewModel;
+import com.example.zunezxapp.preferences.SharedPref;
 import com.example.zunezxapp.repository.Repository;
 
 import javax.inject.Inject;
 
 public class LoginViewModel extends BaseViewModel {
     private final Repository repository;
+    private SharedPref sharedPref;
 
     private MutableLiveData<Boolean> status = new MutableLiveData<>();
 
@@ -24,8 +26,9 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     @Inject
-    public LoginViewModel(Repository repository) {
+    public LoginViewModel(Repository repository, SharedPref sharedPref) {
         this.repository = repository;
+        this.sharedPref = sharedPref;
     }
 
     public void userLogin(String email, String password) {
@@ -41,6 +44,8 @@ public class LoginViewModel extends BaseViewModel {
                 })
                 .subscribe(respone -> {
                     status.setValue(true);
+                    sharedPref.setStatus(true);
+                    sharedPref.setToken(respone.getData().getCustomerId());
                     Log.d("hellooo", "userLogin: " + respone.getData().getCustomerId());
                 }, throwable -> {
                     status.setValue(false);

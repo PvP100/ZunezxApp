@@ -80,7 +80,6 @@
                 android:id="@+id/edt_name_profile"
                 app:layout_constraintBottom_toTopOf="@+id/btn_chinh_sua_ho_so"
                 android:textColor="@color/white"
-                android:text="Phạm Việt Phong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -129,7 +128,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_email_profile"
                 app:layout_constraintTop_toBottomOf="@+id/tv_email_profile"
                 android:textSize="16sp"
-                android:text="phamvietphong3001@gmail.com"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -175,7 +173,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_phone_profile"
                 app:layout_constraintTop_toBottomOf="@+id/tv_phone_profile"
                 android:textSize="16sp"
-                android:text="0396550949"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -221,7 +218,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_gender_profile"
                 app:layout_constraintTop_toBottomOf="@+id/tv_gender_profile"
                 android:textSize="16sp"
-                android:text="Nam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -267,7 +263,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_birthday_profile"
                 app:layout_constraintTop_toBottomOf="@+id/tv_birthday_profile"
                 android:textSize="16sp"
-                android:text="30/01/2000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -313,7 +308,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_address_profile"
                 app:layout_constraintTop_toBottomOf="@+id/tv_address_profile"
                 android:textSize="16sp"
-                android:text="Số 48 Quán Thánh, Ba Đình, Hà Nội"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

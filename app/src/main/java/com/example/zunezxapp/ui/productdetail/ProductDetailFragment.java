@@ -2,6 +2,9 @@ package com.example.zunezxapp.ui.productdetail;
 
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProvider;
+
+import com.bumptech.glide.Glide;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentProductDetailBinding;
@@ -10,7 +13,7 @@ import com.example.zunezxapp.ui.cart.CartFragment;
 public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, FragmentProductDetailBinding> implements View.OnClickListener {
     @Override
     protected ProductDetailViewModel creatViewModel() {
-        return null;
+        return new ViewModelProvider(this, viewModelFactory).get(ProductDetailViewModel.class);
     }
 
     @Override
@@ -25,7 +28,13 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
 
     @Override
     protected void initView() {
-
+        if (getArguments().getString("productId") != null) {
+            viewModel.getProductDetail(getArguments().getString("productId"));
+        }
+        viewModel.getProductDetailLive().observe(this, it -> {
+            Glide.with(requireContext()).load(it.getCoverUrl()).into(binding.imgBackgroudnProductDetail);
+            Glide.with(requireContext()).load(it.getAvatarUrl()).into(binding.imgAvaDetail);
+        });
     }
 
     @Override
