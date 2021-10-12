@@ -55,6 +55,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tv_tong_price_cart"
             app:layout_constraintRight_toRightOf="@+id/btn_mua_hang_cart"
             android:textSize="24sp"
             android:textStyle="bold"

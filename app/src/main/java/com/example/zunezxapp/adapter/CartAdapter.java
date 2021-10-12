@@ -2,22 +2,24 @@ package com.example.zunezxapp.adapter;
 
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.CartItemBinding;
-import com.example.zunezxapp.entity.HomeProduct;
+import com.example.zunezxapp.entity.Cart;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends BaseAdapter<CartItemBinding> {
 
-    private List<HomeProduct> list = new ArrayList<>();
+    private List<Cart> list = new ArrayList<>();
 
     private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-    public void setListCart(List<HomeProduct> list) {
+    public void setListCart(List<Cart> list) {
         this.list = list;
     }
 
@@ -34,16 +36,16 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
     @Override
     protected void solvedOnBindViewHolder(BaseViewHolder holder, int position) {
         OrderViewHolder orderViewHolder = (OrderViewHolder) holder;
-        viewBinderHelper.bind(orderViewHolder.binding.swipeToDelete, "343");
-        ((OrderViewHolder) holder).bind(null);
+        viewBinderHelper.bind(orderViewHolder.binding.swipeToDelete, list.get(position).getId());
+        ((OrderViewHolder) holder).bind(list.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
-    class OrderViewHolder extends BaseViewHolder<HomeProduct> implements View.OnClickListener {
+    class OrderViewHolder extends BaseViewHolder<Cart> implements View.OnClickListener {
 
         CartItemBinding binding;
         int count = 1;
@@ -54,7 +56,11 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
         }
 
         @Override
-        protected void bind(HomeProduct data) {
+        protected void bind(Cart data) {
+            Glide.with(binding.getRoot()).load(data.getAvatarUrl()).into(binding.imgProductCart);
+            binding.tvProductNameCartItem.setText(data.getName());
+            DecimalFormat format = new DecimalFormat("###,###,###");
+            binding.tvPriceCart.setText(format.format(((int) data.getPrice())) + "đ");
             binding.icMinusCartItem.setOnClickListener(this);
             binding.icPlusCartItem.setOnClickListener(this);
         }

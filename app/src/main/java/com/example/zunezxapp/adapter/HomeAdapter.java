@@ -14,6 +14,7 @@ import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.SubCategory;
 import com.example.zunezxapp.ui.home.HomeViewModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -72,6 +73,9 @@ public class HomeAdapter extends BaseAdapter<ProductHomeItemBinding> {
         protected void bind(HomeProduct data) {
             binding.getRoot().setOnClickListener(this);
             binding.tvProductNameHomeItem.setText(data.getName());
+            int price = (int) data.getPrice();
+            DecimalFormat format = new DecimalFormat("###,###,###");
+            binding.tvPriceProductHome.setText(format.format(price) + "đ");
             Glide.with(binding.getRoot()).load(data.getLogoUrl()).error(R.drawable.ic_launcher_background).into(binding.imgProductHomeItem);
         }
 

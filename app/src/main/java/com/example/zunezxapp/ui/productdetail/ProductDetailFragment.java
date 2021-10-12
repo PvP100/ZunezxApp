@@ -11,6 +11,7 @@ import com.example.zunezxapp.databinding.FragmentProductDetailBinding;
 import com.example.zunezxapp.ui.cart.CartFragment;
 
 public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, FragmentProductDetailBinding> implements View.OnClickListener {
+
     @Override
     protected ProductDetailViewModel creatViewModel() {
         return new ViewModelProvider(this, viewModelFactory).get(ProductDetailViewModel.class);
@@ -46,6 +47,7 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
     protected void initListener() {
         binding.icBackProductDetail.setOnClickListener(this);
         binding.icCartProductDetail.setOnClickListener(this);
+        binding.btnThemVaoGioHang.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +62,8 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
             getVC().backFromAddFragment(null);
         } else if (view == binding.icCartProductDetail) {
             getVC().addFragment(CartFragment.class, null, true, true);
+        } else if (view == binding.btnThemVaoGioHang) {
+            viewModel.addToCart();
         }
     }
 }

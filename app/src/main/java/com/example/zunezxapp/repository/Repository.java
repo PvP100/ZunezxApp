@@ -6,10 +6,10 @@ import com.example.zunezxapp.base.entity.BaseObjectResponse;
 import com.example.zunezxapp.entity.HomeCategory;
 import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
+import com.example.zunezxapp.entity.Cart;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
-import com.example.zunezxapp.entity.SubCategory;
 import com.example.zunezxapp.entity.User;
 
 import javax.inject.Inject;
@@ -44,8 +44,8 @@ public class Repository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct() {
-        return apiService.getHomeProduct()
+    public Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct(int cateId) {
+        return apiService.getHomeProduct(cateId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

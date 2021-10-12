@@ -13,10 +13,15 @@ import java.util.List;
 public class CategoryAdapter extends BaseAdapter<CategoryTitleItemBinding> {
 
     private List<HomeCategory> homeCategoryList = new ArrayList<>();
+    private CategoryOnClickListener onClick;
 
     public void setHomeCategoryList(List<HomeCategory> homeCategoryList) {
         this.homeCategoryList = homeCategoryList;
         notifyDataSetChanged();
+    }
+
+    public void setOnClick(CategoryOnClickListener onClick) {
+        this.onClick = onClick;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class CategoryAdapter extends BaseAdapter<CategoryTitleItemBinding> {
 
     @Override
     protected BaseViewHolder solvedOnCreateViewHolder(CategoryTitleItemBinding binding) {
-        return new HomeCateViewHolder(binding);
+        return new HomeCateViewHolder(binding, onClick);
     }
 
     @Override
@@ -39,18 +44,30 @@ public class CategoryAdapter extends BaseAdapter<CategoryTitleItemBinding> {
         return homeCategoryList.size();
     }
 
-    class HomeCateViewHolder extends BaseViewHolder<HomeCategory> {
+    class HomeCateViewHolder extends BaseViewHolder<HomeCategory> implements View.OnClickListener {
 
         CategoryTitleItemBinding binding;
+        private CategoryOnClickListener onClick;
 
-        public HomeCateViewHolder(CategoryTitleItemBinding binding) {
+        public HomeCateViewHolder(CategoryTitleItemBinding binding, CategoryOnClickListener onClick) {
             super(binding.getRoot());
             this.binding = binding;
+            this.onClick = onClick;
         }
 
         @Override
         protected void bind(HomeCategory data) {
             binding.tvCategoryTitle.setText(data.getTitle());
+            binding.tvCategoryTitle.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onClick.onCateClick(Integer.parseInt(homeCategoryList.get(getAdapterPosition()).getId()));
+        }
+    }
+
+    public interface CategoryOnClickListener {
+        void onCateClick(int cateId);
     }
 }

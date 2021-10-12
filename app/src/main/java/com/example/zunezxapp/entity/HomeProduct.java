@@ -5,7 +5,16 @@ public class HomeProduct {
     private String name;
     private String category;
     private String productType;
+    private double price;
     private String logoUrl;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public String getId() {
         return id;

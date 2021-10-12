@@ -13,6 +13,8 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class App extends Application implements HasActivityInjector, HasSupportFragmentInjector {
 
@@ -25,6 +27,9 @@ public class App extends Application implements HasActivityInjector, HasSupportF
     @Override
     public void onCreate() {
         super.onCreate();
+        Realm.init(this);
+        RealmConfiguration configuration = new RealmConfiguration.Builder().name("zunezx.realm").deleteRealmIfMigrationNeeded().build();
+        Realm.setDefaultConfiguration(configuration);
 
         DaggerAppComponent
                 .builder()
