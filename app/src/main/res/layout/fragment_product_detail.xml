@@ -58,6 +58,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toRightOf="@+id/view_background_detail"
             android:textSize="16sp"
             android:id="@+id/tv_product_name_detail"
             android:layout_marginLeft="10dp"
@@ -65,12 +67,12 @@
             app:layout_constraintTop_toTopOf="@+id/cardview_detail"
             app:layout_constraintLeft_toRightOf="@+id/cardview_detail"
             android:text="MARU BLAZER (WHITE)"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_loai_sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_product_name_detail"
             app:layout_constraintLeft_toLeftOf="@+id/tv_product_name_detail"
             android:text="Loại sản phẩm: "
@@ -86,7 +88,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Tình trạng: "
             app:layout_constraintTop_toBottomOf="@+id/tv_loai_sp"
             app:layout_constraintLeft_toLeftOf="@+id/tv_loai_sp"
@@ -95,6 +97,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tv_status_detail"
             app:layout_constraintLeft_toRightOf="@+id/tv_tinh_trang"
             app:layout_constraintTop_toTopOf="@+id/tv_tinh_trang"
             android:text="Còn hàng"
@@ -102,11 +105,19 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tinh_trang"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_tinh_trang"
-            android:text="Kích thước: "
             android:id="@+id/tv_kich_thuoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Kích thước: "
+            app:layout_constraintLeft_toLeftOf="@+id/tv_tinh_trang"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tinh_trang" />
+
+        <Spinner
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kich_thuoc"
+            app:layout_constraintTop_toTopOf="@id/tv_kich_thuoc"
+            app:layout_constraintLeft_toRightOf="@+id/tv_kich_thuoc"
+            android:id="@+id/spinner_size_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

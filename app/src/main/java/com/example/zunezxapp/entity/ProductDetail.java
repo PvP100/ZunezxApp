@@ -12,7 +12,7 @@ public class ProductDetail {
     private double price;
     private String categoryID;
     private String size;
-    private String quantity;
+    private int quantity;
     private String numberSave;
     private boolean isSaved;
 
@@ -96,11 +96,11 @@ public class ProductDetail {
         this.size = size;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

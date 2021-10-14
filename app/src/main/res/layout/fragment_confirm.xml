@@ -83,7 +83,6 @@
             android:id="@+id/tv_customer_name_confirm"
             app:layout_constraintTop_toTopOf="@+id/tv_khach_hang_confirm"
             app:layout_constraintLeft_toRightOf="@+id/tv_khach_hang_confirm"
-            android:text="Phạm Việt Phong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -98,11 +97,11 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tv_address_detail"
             android:layout_marginRight="10dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_address_confirm"
             app:layout_constraintLeft_toLeftOf="@+id/tv_customer_name_confirm"
-            android:text="Số 48 Quán Thánh, Ba Đình, Phường Quán Thánh, Hà Nội"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -119,12 +118,13 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tv_total"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintTop_toTopOf="@+id/tv_total_confirm"
             app:layout_constraintRight_toRightOf="@+id/btn_dat_hang_confirm"
-            android:text="1,890,000đ"
+            android:text="0đ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

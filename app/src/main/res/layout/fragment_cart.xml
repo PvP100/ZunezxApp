@@ -61,7 +61,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="@+id/tv_tong_title_cart"
-            android:text="1,890,000đ"
+            android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -78,5 +78,26 @@
             android:text="Mua hàng"
             android:layout_width="match_parent"
             android:layout_height="45dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintBottom_toTopOf="@+id/tv_tong_title_cart"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gio_hang"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/layout_check_cart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" >
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:textSize="30sp"
+                android:text="Giỏ hàng trống"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/tv_check_gio_hang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

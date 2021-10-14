@@ -57,6 +57,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_name_confirm_item"
+            android:id="@+id/tv_price_confirm"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"

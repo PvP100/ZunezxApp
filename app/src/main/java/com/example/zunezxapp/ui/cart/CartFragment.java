@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 import io.realm.Realm;
 
-public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBinding> implements View.OnClickListener {
+public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBinding> implements View.OnClickListener, CartAdapter.OnDeleteProduct {
 
     @Inject
     Realm realm;
@@ -48,14 +48,25 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
         viewModel.getCart();
         cartAdapter = new CartAdapter();
         binding.rcvCart.setAdapter(cartAdapter);
-        cartAdapter.setTotalCart(realm, viewModel);
+        cartAdapter.setTotalCart(realm, viewModel, this);
         binding.rcvCart.setLayoutManager(new LinearLayoutManager(requireContext()));
         viewModel.getListCartLiveData().observe(this, it -> {
             cartAdapter.setListCart(it);
-            int tong = 0;
-            for (Cart cart : it) {
-                tong += cart.getPrice() * cart.getQuantity();
-                binding.tvTongPriceCart.setText(format.format(tong) + "đ");
+            if (it.size() > 0) {
+                binding.btnMuaHangCart.setVisibility(View.VISIBLE);
+                binding.tvTongTitleCart.setVisibility(View.VISIBLE);
+                binding.tvTongPriceCart.setVisibility(View.VISIBLE);
+                binding.layoutCheckCart.setVisibility(View.INVISIBLE);
+                int tong = 0;
+                for (Cart cart : it) {
+                    tong += cart.getPrice() * cart.getQuantity();
+                    binding.tvTongPriceCart.setText(format.format(tong) + "đ");
+                }
+            } else {
+                binding.layoutCheckCart.setVisibility(View.VISIBLE);
+                binding.btnMuaHangCart.setVisibility(View.INVISIBLE);
+                binding.tvTongTitleCart.setVisibility(View.INVISIBLE);
+                binding.tvTongPriceCart.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -84,5 +95,11 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
         } else {
             getVC().backFromAddFragment(null);
         }
+    }
+
+    @Override
+    public void onDelete(String id) {
+        viewModel.deleteProductInCart(id);
+        viewModel.onChangeCart();
     }
 }

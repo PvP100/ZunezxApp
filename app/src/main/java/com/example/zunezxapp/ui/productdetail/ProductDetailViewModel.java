@@ -49,7 +49,7 @@ public class ProductDetailViewModel extends BaseViewModel {
                 }));
     }
 
-    public void addToCart() {
+    public void addToCart(String size) {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -58,6 +58,7 @@ public class ProductDetailViewModel extends BaseViewModel {
                 productCart.setPrice(productDetail.getValue().getPrice());
                 productCart.setName(productDetail.getValue().getName());
                 productCart.setId(productDetail.getValue().getId());
+                productCart.setSize(size);
                 productCart.setQuantity(1);
             }
         }, new Realm.Transaction.OnSuccess() {
