@@ -5,6 +5,7 @@ import com.example.zunezxapp.entity.HomeCategory;
 import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
 import com.example.zunezxapp.entity.Cart;
+import com.example.zunezxapp.entity.Order;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
@@ -39,4 +40,7 @@ public interface ApiService {
 
     @GET("/api/products/clothes/{id}")
     Single<BaseObjectResponse<ProductDetail>> getProductDetail(@Path("id") String productId);
+
+    @GET("/api/customers/{customerId}/orders")
+    Single<BaseObjectResponse<Result<Order>>> getCustomerOrder(@Path("customerId") String customerId);
 }

@@ -7,6 +7,7 @@ import com.example.zunezxapp.entity.HomeCategory;
 import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
 import com.example.zunezxapp.entity.Cart;
+import com.example.zunezxapp.entity.Order;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
@@ -52,6 +53,12 @@ public class Repository {
 
     public Single<BaseObjectResponse<ProductDetail>> getProductDetail(String productId) {
         return apiService.getProductDetail(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse<Result<Order>>> getCustomerOrder(String customerId) {
+        return apiService.getCustomerOrder(customerId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

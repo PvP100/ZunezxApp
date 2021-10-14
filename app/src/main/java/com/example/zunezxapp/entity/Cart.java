@@ -10,9 +10,18 @@ public class Cart extends RealmObject {
     private String size;
     private double price;
     private String avatarUrl;
+    private int quantity;
 
     public String getSize() {
         return size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setSize(String size) {

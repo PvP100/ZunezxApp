@@ -18,6 +18,16 @@ public class CartViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Cart>> listCartLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<Integer> totalPrice = new MutableLiveData<>();
+
+    public MutableLiveData<Integer> getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(MutableLiveData<Integer> totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public MutableLiveData<List<Cart>> getListCartLiveData() {
         return listCartLiveData;
     }
@@ -36,6 +46,12 @@ public class CartViewModel extends BaseViewModel {
     public void getCart() {
         listCart = realm.where(Cart.class).findAll();
         listCartLiveData.setValue(listCart);
+    }
+
+    public void onChangeCart() {
+        listCart.addChangeListener(results -> {
+            listCartLiveData.setValue(results);
+        });
     }
 
 }

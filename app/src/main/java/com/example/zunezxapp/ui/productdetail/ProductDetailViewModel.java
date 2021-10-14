@@ -58,6 +58,7 @@ public class ProductDetailViewModel extends BaseViewModel {
                 productCart.setPrice(productDetail.getValue().getPrice());
                 productCart.setName(productDetail.getValue().getName());
                 productCart.setId(productDetail.getValue().getId());
+                productCart.setQuantity(1);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override

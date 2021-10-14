@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.zunezxapp.di.ViewModelFactory;
 import com.example.zunezxapp.di.ViewModelKey;
 import com.example.zunezxapp.ui.cart.CartViewModel;
+import com.example.zunezxapp.ui.history.HistoryViewModel;
 import com.example.zunezxapp.ui.home.HomeViewModel;
 import com.example.zunezxapp.ui.login.LoginViewModel;
 import com.example.zunezxapp.ui.productdetail.ProductDetailViewModel;
@@ -50,6 +51,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CartViewModel.class)
     abstract ViewModel bindCartViewModel(CartViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HistoryViewModel.class)
+    abstract ViewModel bindHistoryViewModel(HistoryViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

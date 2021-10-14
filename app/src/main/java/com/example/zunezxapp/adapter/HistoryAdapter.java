@@ -7,7 +7,18 @@ import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.HistoryItemBinding;
 import com.example.zunezxapp.entity.Order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
+
+    private List<Order> listOrder = new ArrayList<>();
+
+    public void setListOrder(List<Order> list) {
+        listOrder = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.history_item;
@@ -20,12 +31,12 @@ public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
 
     @Override
     protected void solvedOnBindViewHolder(BaseViewHolder holder, int position) {
-        ((HistoryViewHolder) holder).bind(null);
+        ((HistoryViewHolder) holder).bind(listOrder.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return listOrder.size();
     }
 
     class HistoryViewHolder extends BaseViewHolder<Order> {
@@ -39,7 +50,8 @@ public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
 
         @Override
         protected void bind(Order data) {
-
+            binding.tvIdOrderItem.setText(data.getId());
+            binding.tvNgayDatHang.setText(String.valueOf(data.getCreatedDate()));
         }
     }
 }

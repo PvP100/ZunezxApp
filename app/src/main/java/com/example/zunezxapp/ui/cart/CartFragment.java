@@ -14,7 +14,14 @@ import com.example.zunezxapp.ui.confirm.ConfirmFragment;
 
 import java.text.DecimalFormat;
 
+import javax.inject.Inject;
+
+import io.realm.Realm;
+
 public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBinding> implements View.OnClickListener {
+
+    @Inject
+    Realm realm;
 
     private CartAdapter cartAdapter;
 
@@ -41,14 +48,15 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
         viewModel.getCart();
         cartAdapter = new CartAdapter();
         binding.rcvCart.setAdapter(cartAdapter);
+        cartAdapter.setTotalCart(realm, viewModel);
         binding.rcvCart.setLayoutManager(new LinearLayoutManager(requireContext()));
         viewModel.getListCartLiveData().observe(this, it -> {
             cartAdapter.setListCart(it);
             int tong = 0;
             for (Cart cart : it) {
-                tong += cart.getPrice();
+                tong += cart.getPrice() * cart.getQuantity();
+                binding.tvTongPriceCart.setText(format.format(tong) + "đ");
             }
-            binding.tvTongPriceCart.setText(format.format(tong) + "đ");
         });
     }
 

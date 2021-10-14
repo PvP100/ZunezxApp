@@ -2,25 +2,41 @@ package com.example.zunezxapp.adapter;
 
 import android.view.View;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.bumptech.glide.Glide;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.CartItemBinding;
 import com.example.zunezxapp.entity.Cart;
+import com.example.zunezxapp.ui.cart.CartViewModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class CartAdapter extends BaseAdapter<CartItemBinding> {
 
+    Realm realm;
+
     private List<Cart> list = new ArrayList<>();
+
+    CartViewModel cartViewModel;
+
+    DecimalFormat format = new DecimalFormat("###,###,###");
 
     private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
     public void setListCart(List<Cart> list) {
         this.list = list;
+    }
+
+    public void setTotalCart(Realm realm, CartViewModel viewModel) {
+        this.realm = realm;
+        cartViewModel = viewModel;
     }
 
     @Override
@@ -57,10 +73,12 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
 
         @Override
         protected void bind(Cart data) {
+            count = data.getQuantity();
             Glide.with(binding.getRoot()).load(data.getAvatarUrl()).into(binding.imgProductCart);
             binding.tvProductNameCartItem.setText(data.getName());
-            DecimalFormat format = new DecimalFormat("###,###,###");
             binding.tvPriceCart.setText(format.format(((int) data.getPrice())) + "đ");
+            binding.tvPriceCart.setText(format.format(((int) data.getPrice()) * count) + "đ");
+            binding.tvCountProductCartItem.setText(String.valueOf(data.getQuantity()));
             binding.icMinusCartItem.setOnClickListener(this);
             binding.icPlusCartItem.setOnClickListener(this);
         }
@@ -70,10 +88,26 @@ public class CartAdapter extends BaseAdapter<CartItemBinding> {
             if (view == binding.icPlusCartItem) {
                 count++;
                 binding.tvCountProductCartItem.setText(String.valueOf(count));
+                double total = list.get(getAdapterPosition()).getPrice() * count;
+//                totalCart += (int) list.get(getAdapterPosition()).getPrice();
+                binding.tvPriceCart.setText(format.format(((int) total)) + "đ");
+//                totalPrice.setValue(totalCart);
+                realm.beginTransaction();
+                list.get(getAdapterPosition()).setQuantity(count);
+                realm.commitTransaction();
+                cartViewModel.onChangeCart();
             } else if (view == binding.icMinusCartItem) {
                 if (count >= 2) {
                     count--;
                     binding.tvCountProductCartItem.setText(String.valueOf(count));
+                    double total = list.get(getAdapterPosition()).getPrice() * count;
+//                    totalCart -= (int) list.get(getAdapterPosition()).getPrice();
+                    binding.tvPriceCart.setText(format.format(((int) total)) + "đ");
+//                    totalPrice.setValue(totalCart);
+                    realm.beginTransaction();
+                    list.get(getAdapterPosition()).setQuantity(count);
+                    realm.commitTransaction();
+                    cartViewModel.onChangeCart();
                 }
             }
         }
