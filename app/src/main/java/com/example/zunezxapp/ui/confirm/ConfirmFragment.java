@@ -54,6 +54,7 @@ public class ConfirmFragment extends BaseFragment<ConfirmViewModel, FragmentConf
         viewModel.getProfileMutableLiveData().observe(this, it -> {
             binding.tvCustomerNameConfirm.setText(it.getFullName());
             binding.tvAddressDetail.setText(it.getAddress());
+            binding.tvPhone.setText(it.getPhone());
         });
     }
 

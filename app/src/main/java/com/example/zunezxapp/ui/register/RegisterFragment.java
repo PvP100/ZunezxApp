@@ -11,6 +11,7 @@ import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentRegisterBinding;
 import com.example.zunezxapp.ui.home.HomeFragment;
+import com.example.zunezxapp.ui.login.LoginFragment;
 import com.example.zunezxapp.ui.main.MainFragment;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -43,7 +44,7 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
         viewModel.getStatus().observe(this, it -> {
             if (it) {
                 Toast.makeText(requireContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                getVC().addFragment(MainFragment.class, null, true, true);
+                getVC().replaceFragment(LoginFragment.class, null);
             }
         });
     }
@@ -69,13 +70,17 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
     @Override
     public void onClick(View view) {
         if (view == binding.btnRegister) {
+            int gender = 0;
+            if(binding.spinnerGenderRegis.getSelectedItem().toString().equals("Nam")) {
+                gender = 1;
+            }
             viewModel.register(
                     binding.edtPasswordRegis.getText().toString().trim(),
                     binding.edtAddressRegis.getText().toString().trim(),
                     binding.edtBirthdayRegis.getText().toString().trim(),
                     binding.edtEmailRegis.getText().toString().trim(),
-                    binding.edtHoRegis.getText().toString().trim() + binding.edtTenRegis.getText().toString().trim(),
-                    1, binding.edtPhoneRegis.getText().toString().trim()
+                    binding.edtHoRegis.getText().toString().trim() + " " + binding.edtTenRegis.getText().toString().trim(),
+                    gender, binding.edtPhoneRegis.getText().toString().trim()
             );
         } else if (view == binding.tvDangNhapRegis) {
             getVC().backFromAddFragment(null);

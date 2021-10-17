@@ -1,5 +1,6 @@
 package com.example.zunezxapp.ui.categorydetail;
 
+import android.os.Bundle;
 import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -10,8 +11,9 @@ import com.example.zunezxapp.adapter.SearchAdapter;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.custom.GridSpacingItemDecoration;
 import com.example.zunezxapp.databinding.FragmentSearchBinding;
+import com.example.zunezxapp.ui.productdetail.ProductDetailFragment;
 
-public class SearchFragment extends BaseFragment<SearchViewModel, FragmentSearchBinding> implements View.OnClickListener {
+public class SearchFragment extends BaseFragment<SearchViewModel, FragmentSearchBinding> implements View.OnClickListener, SearchAdapter.OnClickSearch {
     @Override
     protected SearchViewModel creatViewModel() {
         return new ViewModelProvider(this, viewModelFactory).get(SearchViewModel.class);
@@ -32,7 +34,7 @@ public class SearchFragment extends BaseFragment<SearchViewModel, FragmentSearch
         SearchAdapter searchAdapter = new SearchAdapter();
         viewModel.getListHomeProduct().observe(this, it -> {
             if (it.size() > 0) {
-                searchAdapter.setSearch(it);
+                searchAdapter.setSearch(it, this);
                 binding.layoutSearch.setVisibility(View.INVISIBLE);
             } else {
                 binding.layoutSearch.setVisibility(View.VISIBLE);
@@ -62,5 +64,12 @@ public class SearchFragment extends BaseFragment<SearchViewModel, FragmentSearch
     @Override
     public void onClick(View view) {
         getVC().backFromAddFragment(null);
+    }
+
+    @Override
+    public void onClickSearchProduct(String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("productId", id);
+        getVC().addFragment(ProductDetailFragment.class, bundle, true, true);
     }
 }

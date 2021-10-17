@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentProfileBinding;
@@ -34,10 +35,20 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
         viewModel.getProfile();
         viewModel.getProfileMutableLiveData().observe(this, it -> {
             if (it != null) {
+                binding.edtNameProfile.setEnabled(false);
+                binding.icLogout.setVisibility(View.VISIBLE);
+                binding.icCancel.setVisibility(View.INVISIBLE);
+                binding.icUpdate.setVisibility(View.INVISIBLE);
+                binding.edtEmailUserProfile.setEnabled(false);
+                binding.edtAddressUserProfile.setEnabled(false);
+                binding.edtBirthdayUserProfile.setEnabled(false);
+                binding.spinnerGenderProfile.setEnabled(false);
+                binding.edtPhoneUserProfile.setEnabled(false);
                 binding.edtBirthdayUserProfile.setText(it.getBirthday());
                 binding.edtAddressUserProfile.setText(it.getAddress());
                 binding.edtEmailUserProfile.setText(it.getEmail());
                 binding.edtPhoneUserProfile.setText(it.getPhone());
+                Glide.with(requireContext()).load(it.getAvatarUrl()).into(binding.imgAvaProfile);
                 if (it.getGender() == 0) {
                     binding.spinnerGenderProfile.setSelection(1);
                 } else {
@@ -77,15 +88,6 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
             getVC().replaceFragment(LoginFragment.class, null);
         } else if (view == binding.icCancel) {
             viewModel.getProfile();
-            binding.edtNameProfile.setEnabled(true);
-            binding.icLogout.setVisibility(View.VISIBLE);
-            binding.icCancel.setVisibility(View.INVISIBLE);
-            binding.icUpdate.setVisibility(View.INVISIBLE);
-            binding.edtEmailUserProfile.setEnabled(false);
-            binding.edtAddressUserProfile.setEnabled(false);
-            binding.edtBirthdayUserProfile.setEnabled(false);
-            binding.spinnerGenderProfile.setEnabled(false);
-            binding.edtPhoneUserProfile.setEnabled(false);
         } else if (view == binding.btnChinhSuaHoSo) {
             binding.edtNameProfile.setEnabled(true);
             binding.icLogout.setVisibility(View.GONE);
