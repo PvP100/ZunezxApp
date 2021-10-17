@@ -13,6 +13,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.zunezxapp.custom.DatePicker;
 import com.example.zunezxapp.custom.LoadingDialog;
 
 import javax.inject.Inject;
@@ -27,6 +28,8 @@ public abstract class BaseFragment<VM extends BaseViewModel, T extends ViewDataB
     protected VM viewModel;
 
     protected abstract VM creatViewModel();
+
+    protected DatePicker datePicker;
 
     @Inject
     protected ViewModelProvider.Factory viewModelFactory;
@@ -52,6 +55,7 @@ public abstract class BaseFragment<VM extends BaseViewModel, T extends ViewDataB
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadingDialog = new LoadingDialog(requireContext());
+        datePicker = new DatePicker(requireContext());
         viewModel = creatViewModel();
         initView();
         initData();

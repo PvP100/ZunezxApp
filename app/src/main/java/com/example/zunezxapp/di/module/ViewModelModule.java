@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.zunezxapp.di.ViewModelFactory;
 import com.example.zunezxapp.di.ViewModelKey;
 import com.example.zunezxapp.ui.cart.CartViewModel;
+import com.example.zunezxapp.ui.categorydetail.SearchViewModel;
+import com.example.zunezxapp.ui.changepassword.ChangePasswordViewmodel;
 import com.example.zunezxapp.ui.confirm.ConfirmViewModel;
 import com.example.zunezxapp.ui.history.HistoryViewModel;
 import com.example.zunezxapp.ui.home.HomeViewModel;
 import com.example.zunezxapp.ui.login.LoginViewModel;
 import com.example.zunezxapp.ui.productdetail.ProductDetailViewModel;
 import com.example.zunezxapp.ui.profile.ProfileViewModel;
+import com.example.zunezxapp.ui.register.RegisterViewModel;
 import com.example.zunezxapp.ui.splash.SplashViewModel;
 
 import dagger.Binds;
@@ -62,6 +65,21 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ConfirmViewModel.class)
     abstract ViewModel bindConfirmViewModel(ConfirmViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChangePasswordViewmodel.class)
+    abstract ViewModel bindChangePasswordViewmodel(ChangePasswordViewmodel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel.class)
+    abstract ViewModel bindSearchViewModel(SearchViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel.class)
+    abstract ViewModel bindRegisterViewModel(RegisterViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

@@ -10,6 +10,8 @@ import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.repository.Repository;
 
 
+import java.util.UUID;
+
 import javax.inject.Inject;
 
 import io.realm.Realm;
@@ -50,27 +52,34 @@ public class ProductDetailViewModel extends BaseViewModel {
     }
 
     public void addToCart(String size) {
-        realm.executeTransactionAsync(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                Cart productCart = realm.createObject(Cart.class);
-                productCart.setAvatarUrl(productDetail.getValue().getAvatarUrl());
-                productCart.setPrice(productDetail.getValue().getPrice());
-                productCart.setName(productDetail.getValue().getName());
-                productCart.setId(productDetail.getValue().getId());
-                productCart.setSize(size);
-                productCart.setQuantity(1);
-            }
-        }, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-                Log.d("checkcheck", "onSuccess: ");
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-                Log.d("dfdf", "onError: " + error.getLocalizedMessage());
-            }
-        });
+        Cart cart = realm.where(Cart.class).equalTo("size", size).equalTo("productId", productDetail.getValue().getId()).findFirst();
+        if (cart != null) {
+            messageError.setValue("Sản phẩm và Size này đã có trong giỏ hàng!");
+        } else {
+            realm.executeTransactionAsync(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Cart productCart = realm.createObject(Cart.class);
+                    productCart.setAvatarUrl(productDetail.getValue().getAvatarUrl());
+                    productCart.setPrice(productDetail.getValue().getPrice());
+                    productCart.setName(productDetail.getValue().getName());
+                    productCart.setId(UUID.randomUUID().toString());
+                    productCart.setProductId(productDetail.getValue().getId());
+                    productCart.setSize(size);
+                    productCart.setQuantity(1);
+                }
+            }, new Realm.Transaction.OnSuccess() {
+                @Override
+                public void onSuccess() {
+                    status.setValue(true);
+                    Log.d("checkcheck", "onSuccess: ");
+                }
+            }, new Realm.Transaction.OnError() {
+                @Override
+                public void onError(Throwable error) {
+                    Log.d("dfdf", "onError: " + error.getLocalizedMessage());
+                }
+            });
+        }
     }
 }

@@ -6,23 +6,25 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.zunezxapp.base.BaseViewModel;
+import com.example.zunezxapp.base.entity.BaseObjectResponse;
 import com.example.zunezxapp.preferences.SharedPref;
 import com.example.zunezxapp.repository.Repository;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
+
+import java.io.IOException;
 
 import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class LoginViewModel extends BaseViewModel {
     private final Repository repository;
     private SharedPref sharedPref;
 
-    private MutableLiveData<Boolean> status = new MutableLiveData<>();
-
     public MutableLiveData<Boolean> getMessage() {
         return status;
-    }
-
-    public void setMessage(MutableLiveData<Boolean> status) {
-        this.status = status;
     }
 
     @Inject
@@ -46,10 +48,19 @@ public class LoginViewModel extends BaseViewModel {
                     status.setValue(true);
                     sharedPref.setStatus(true);
                     sharedPref.setToken(respone.getData().getCustomerId());
-                    Log.d("hellooo", "userLogin: " + respone.getData().getCustomerId());
                 }, throwable -> {
                     status.setValue(false);
-                    Log.d("hellooo", "userFail: " + throwable.getLocalizedMessage());
+                    if(throwable instanceof HttpException) {
+                        ResponseBody body = ((HttpException) throwable).response().errorBody();
+                        Gson gson = new Gson();
+                        TypeAdapter<BaseObjectResponse> adapter = gson.getAdapter(BaseObjectResponse.class);
+                        try {
+                            BaseObjectResponse baseObjectResponse = adapter.fromJson(body.string());
+                            messageError.setValue(baseObjectResponse.getMsg());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }));
     }
 }

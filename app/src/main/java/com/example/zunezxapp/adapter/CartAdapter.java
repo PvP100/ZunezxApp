@@ -1,12 +1,8 @@
 package com.example.zunezxapp.adapter;
 
 import android.view.View;
-import android.widget.Toast;
-
-import androidx.lifecycle.MutableLiveData;
 
 import com.bumptech.glide.Glide;
-import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;

@@ -1,8 +1,7 @@
 package com.example.zunezxapp.di.module;
 
-import com.example.zunezxapp.MainActivity;
 import com.example.zunezxapp.ui.cart.CartFragment;
-import com.example.zunezxapp.ui.categorydetail.CategoryDetailFragment;
+import com.example.zunezxapp.ui.categorydetail.SearchFragment;
 import com.example.zunezxapp.ui.changepassword.ChangePasswordFragment;
 import com.example.zunezxapp.ui.confirm.ConfirmFragment;
 import com.example.zunezxapp.ui.history.HistoryFragment;
@@ -41,7 +40,7 @@ public abstract class FragmentBindingModule {
     abstract CartFragment bindCartFragment();
 
     @ContributesAndroidInjector
-    abstract CategoryDetailFragment bindCategoryDetail();
+    abstract SearchFragment bindCategoryDetail();
 
     @ContributesAndroidInjector
     abstract ChangePasswordFragment bindChangePassword();

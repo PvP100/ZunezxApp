@@ -2,7 +2,7 @@ package com.example.zunezxapp.ui.home;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.SearchView;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,10 +16,10 @@ import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.custom.GridSpacingItemDecoration;
 import com.example.zunezxapp.databinding.FragmentHomeBinding;
 import com.example.zunezxapp.ui.cart.CartFragment;
-import com.example.zunezxapp.ui.categorydetail.CategoryDetailFragment;
+import com.example.zunezxapp.ui.categorydetail.SearchFragment;
 import com.example.zunezxapp.ui.productdetail.ProductDetailFragment;
 
-public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener, HomeAdapter.OnGetAllCLickListener, SwipeRefreshLayout.OnRefreshListener, CategoryAdapter.CategoryOnClickListener {
+public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBinding> implements View.OnClickListener, HomeAdapter.OnGetAllCLickListener, SwipeRefreshLayout.OnRefreshListener, CategoryAdapter.CategoryOnClickListener, SearchView.OnQueryTextListener {
 
     private HomeAdapter homeAdapter;
     private CategoryAdapter categoryAdapter;
@@ -68,6 +68,7 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     protected void initListener() {
+        binding.searchViewHome.setOnQueryTextListener(this);
         binding.tvAllHome.setOnClickListener(this);
         binding.swipeToRefreshHome.setOnRefreshListener(this);
         binding.icCartHome.setOnClickListener(this);
@@ -104,5 +105,18 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
     @Override
     public void onCateClick(int cateId) {
         viewModel.getHomeProduct(cateId);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        Bundle bundle = new Bundle();
+        bundle.putString("search", s);
+        getVC().addFragment(SearchFragment.class, bundle, true, true);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
     }
 }

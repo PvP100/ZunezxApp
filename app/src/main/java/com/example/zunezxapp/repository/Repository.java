@@ -6,11 +6,12 @@ import com.example.zunezxapp.base.entity.BaseObjectResponse;
 import com.example.zunezxapp.entity.HomeCategory;
 import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
-import com.example.zunezxapp.entity.Cart;
+import com.example.zunezxapp.entity.NewPassword;
 import com.example.zunezxapp.entity.Order;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
+import com.example.zunezxapp.entity.ProfileBody;
 import com.example.zunezxapp.entity.User;
 
 import javax.inject.Inject;
@@ -59,6 +60,30 @@ public class Repository {
 
     public Single<BaseObjectResponse<Result<Order>>> getCustomerOrder(String customerId) {
         return apiService.getCustomerOrder(customerId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse> changePassword(String customerId, NewPassword newPasswordBody) {
+        return apiService.changePassword(customerId, newPasswordBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse<Result<HomeProduct>>> searchByProductName(String productName) {
+        return apiService.searchProduct(productName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse<Profile>> updateProfile(String id, ProfileBody profileBody) {
+        return apiService.updateProfile(id, profileBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse> regis(String basicAuth, ProfileBody profileBody) {
+        return apiService.register(basicAuth, profileBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

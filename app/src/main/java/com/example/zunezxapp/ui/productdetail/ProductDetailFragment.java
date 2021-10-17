@@ -46,6 +46,11 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
         if (getArguments().getString("productId") != null) {
             viewModel.getProductDetail(getArguments().getString("productId"));
         }
+        viewModel.getStatus().observe(this, it -> {
+            if (true) {
+                Toast.makeText(requireContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+            }
+        });
         viewModel.getProductDetailLive().observe(this, it -> {
             binding.tvProductNameDetail.setText(it.getName());
             binding.tvProductDetailPrice.setText(format.format(it.getPrice()) + "đ");
@@ -61,6 +66,9 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
             }
             Glide.with(requireContext()).load(it.getCoverUrl()).into(binding.imgBackgroudnProductDetail);
             Glide.with(requireContext()).load(it.getAvatarUrl()).into(binding.imgAvaDetail);
+        });
+        viewModel.getMessageError().observe(this, it -> {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -90,7 +98,6 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
             getVC().addFragment(CartFragment.class, null, true, true);
         } else if (view == binding.btnThemVaoGioHang) {
             viewModel.addToCart(binding.spinnerSizeDetail.getSelectedItem().toString());
-            Toast.makeText(requireContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
         }
     }
 }

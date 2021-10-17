@@ -1,11 +1,26 @@
 package com.example.zunezxapp.adapter;
 
+import com.bumptech.glide.Glide;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseAdapter;
 import com.example.zunezxapp.databinding.CategoryItemBinding;
 import com.example.zunezxapp.entity.HomeProduct;
 
-public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchAdapter extends BaseAdapter<CategoryItemBinding> {
+
+    List<HomeProduct> list = new ArrayList<>();
+
+    DecimalFormat format = new DecimalFormat("###,###,###");
+
+    public void setSearch(List<HomeProduct> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.category_item;
@@ -18,12 +33,12 @@ public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
 
     @Override
     protected void solvedOnBindViewHolder(BaseViewHolder holder, int position) {
-        ((CategoryDetailViewHolder) holder).bind(null);
+        ((CategoryDetailViewHolder) holder).bind(list.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     class CategoryDetailViewHolder extends BaseViewHolder<HomeProduct> {
@@ -37,7 +52,9 @@ public class CategoryDetailAdapter extends BaseAdapter<CategoryItemBinding> {
 
         @Override
         protected void bind(HomeProduct data) {
-
+            Glide.with(binding.getRoot()).load(data.getLogoUrl()).into(binding.imgSearch);
+            binding.tvProductNameCategoryItem.setText(data.getName());
+            binding.tvPriceSearch.setText(format.format(((int) data.getPrice())) + "đ");
         }
     }
 }

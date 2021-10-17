@@ -30,6 +30,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
 
     @Override
     protected void initView() {
+        binding.spinnerGenderProfile.setEnabled(false);
         viewModel.getProfile();
         viewModel.getProfileMutableLiveData().observe(this, it -> {
             if (it != null) {
@@ -38,9 +39,9 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
                 binding.edtEmailUserProfile.setText(it.getEmail());
                 binding.edtPhoneUserProfile.setText(it.getPhone());
                 if (it.getGender() == 0) {
-                    binding.edtGenderUserProfile.setText("Nữ");
+                    binding.spinnerGenderProfile.setSelection(1);
                 } else {
-                    binding.edtGenderUserProfile.setText("Nam");
+                    binding.spinnerGenderProfile.setSelection(0);
                 }
                 binding.edtNameProfile.setText(it.getFullName());
             }
@@ -54,6 +55,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
 
     @Override
     protected void initListener() {
+        binding.icUpdate.setOnClickListener(this);
+        binding.edtBirthdayUserProfile.setOnClickListener(this);
         binding.btnChangePasswordProfile.setOnClickListener(this);
         binding.btnChinhSuaHoSo.setOnClickListener(this);
         binding.icCancel.setOnClickListener(this);
@@ -73,23 +76,41 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
             viewModel.logout();
             getVC().replaceFragment(LoginFragment.class, null);
         } else if (view == binding.icCancel) {
+            viewModel.getProfile();
+            binding.edtNameProfile.setEnabled(true);
             binding.icLogout.setVisibility(View.VISIBLE);
             binding.icCancel.setVisibility(View.INVISIBLE);
             binding.icUpdate.setVisibility(View.INVISIBLE);
             binding.edtEmailUserProfile.setEnabled(false);
             binding.edtAddressUserProfile.setEnabled(false);
             binding.edtBirthdayUserProfile.setEnabled(false);
-            binding.edtGenderUserProfile.setEnabled(false);
+            binding.spinnerGenderProfile.setEnabled(false);
             binding.edtPhoneUserProfile.setEnabled(false);
         } else if (view == binding.btnChinhSuaHoSo) {
-            binding.icLogout.setVisibility(View.INVISIBLE);
+            binding.edtNameProfile.setEnabled(true);
+            binding.icLogout.setVisibility(View.GONE);
             binding.icCancel.setVisibility(View.VISIBLE);
             binding.icUpdate.setVisibility(View.VISIBLE);
             binding.edtEmailUserProfile.setEnabled(true);
             binding.edtAddressUserProfile.setEnabled(true);
             binding.edtBirthdayUserProfile.setEnabled(true);
-            binding.edtGenderUserProfile.setEnabled(true);
+            binding.spinnerGenderProfile.setEnabled(true);
             binding.edtPhoneUserProfile.setEnabled(true);
+        } else if (view == binding.edtBirthdayUserProfile) {
+            datePicker.pickDate(binding.edtBirthdayUserProfile);
+        } else if (view == binding.icUpdate) {
+            int gender = 0;
+            if (binding.spinnerGenderProfile.getSelectedItem().toString().equals("Nam")) {
+                gender = 1;
+            }
+            viewModel.updateProfile(
+                    binding.edtAddressUserProfile.getText().toString().trim(),
+                    binding.edtBirthdayUserProfile.getText().toString().trim(),
+                    binding.edtEmailUserProfile.getText().toString().trim(),
+                    binding.edtNameProfile.getText().toString().trim(),
+                    gender,
+                    binding.edtPhoneUserProfile.getText().toString().trim()
+            );
         }
     }
 }

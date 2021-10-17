@@ -37,6 +37,9 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
                 loadingDialog.hide();
             }
         });
+        viewModel.getMessageError().observe(this, it -> {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

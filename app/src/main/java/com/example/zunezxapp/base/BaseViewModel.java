@@ -14,6 +14,30 @@ public abstract class BaseViewModel extends ViewModel {
 
     protected MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
+    protected MutableLiveData<Boolean> status = new MutableLiveData<>();
+
+    protected MutableLiveData<String> messageError = new MutableLiveData<>();
+
+    public MutableLiveData<String> getMessageError() {
+        return messageError;
+    }
+
+    public void setMessageError(MutableLiveData<String> messageError) {
+        this.messageError = messageError;
+    }
+
+    public MutableLiveData<Boolean> getStatus() {
+        return status;
+    }
+
+    public void setStatus(MutableLiveData<Boolean> status) {
+        this.status = status;
+    }
+
+    public void setLoading(MutableLiveData<Boolean> loading) {
+        this.loading = loading;
+    }
+
     public MutableLiveData<Boolean> getLoading() {
         return loading;
     }

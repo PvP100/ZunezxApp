@@ -93,6 +93,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:focusable="false"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/edt_birthday_regis"
@@ -152,8 +153,29 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:text="Địa chỉ"
+                android:text="Email"
                 app:layout_constraintTop_toBottomOf="@+id/edt_email_regis"
+                android:id="@+id/tv_phone_regis"
+                app:layout_constraintLeft_toLeftOf="@id/tv_ho_regis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_login_regis_background"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_regis"
+                app:layout_constraintLeft_toLeftOf="@+id/edt_ho_regis"
+                app:layout_constraintRight_toRightOf="@+id/edt_ten_regis"
+                android:id="@+id/edt_phone_regis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="Địa chỉ"
+                app:layout_constraintTop_toBottomOf="@+id/edt_phone_regis"
                 android:id="@+id/tv_address_regis"
                 app:layout_constraintLeft_toLeftOf="@id/tv_ho_regis"
                 android:layout_width="wrap_content"
@@ -181,6 +203,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edt_login_regis_background"
                 app:layout_constraintTop_toBottomOf="@+id/tv_password_regis"
@@ -202,6 +225,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edt_login_regis_background"
                 app:layout_constraintTop_toBottomOf="@+id/tv_re_password_regis"
