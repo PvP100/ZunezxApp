@@ -6,6 +6,7 @@ import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
 import com.example.zunezxapp.entity.NewPassword;
 import com.example.zunezxapp.entity.Order;
+import com.example.zunezxapp.entity.OrderBody;
 import com.example.zunezxapp.entity.OrderDetail;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
@@ -58,4 +59,7 @@ public interface ApiService {
 
     @GET("/api/order/getdetail/{id}")
     Single<BaseObjectResponse<Result<OrderDetail>>> getOrderDetail(@Path("id") String orderId);
+
+    @POST("/api/order/addorder")
+    Single<BaseObjectResponse> createOrder(@Body OrderBody body);
 }

@@ -27,6 +27,8 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:id="@+id/tv_product_name_home_item"
