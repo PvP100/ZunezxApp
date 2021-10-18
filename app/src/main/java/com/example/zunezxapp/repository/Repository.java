@@ -8,6 +8,7 @@ import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
 import com.example.zunezxapp.entity.NewPassword;
 import com.example.zunezxapp.entity.Order;
+import com.example.zunezxapp.entity.OrderDetail;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
@@ -84,6 +85,12 @@ public class Repository {
 
     public Single<BaseObjectResponse> regis(String basicAuth, ProfileBody profileBody) {
         return apiService.register(basicAuth, profileBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse<Result<OrderDetail>>> getOrderDetail(String id) {
+        return apiService.getOrderDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

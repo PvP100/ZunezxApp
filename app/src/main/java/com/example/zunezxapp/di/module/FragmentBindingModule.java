@@ -8,6 +8,7 @@ import com.example.zunezxapp.ui.history.HistoryFragment;
 import com.example.zunezxapp.ui.home.HomeFragment;
 import com.example.zunezxapp.ui.login.LoginFragment;
 import com.example.zunezxapp.ui.main.MainFragment;
+import com.example.zunezxapp.ui.orderdetail.OrderDetailFragment;
 import com.example.zunezxapp.ui.productdetail.ProductDetailFragment;
 import com.example.zunezxapp.ui.profile.ProfileFragment;
 import com.example.zunezxapp.ui.register.RegisterFragment;
@@ -53,4 +54,7 @@ public abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract RegisterFragment bindRegister();
+
+    @ContributesAndroidInjector
+    abstract OrderDetailFragment bindOrderDetailFragment();
 }

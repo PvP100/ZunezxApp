@@ -13,6 +13,7 @@ import com.example.zunezxapp.ui.confirm.ConfirmViewModel;
 import com.example.zunezxapp.ui.history.HistoryViewModel;
 import com.example.zunezxapp.ui.home.HomeViewModel;
 import com.example.zunezxapp.ui.login.LoginViewModel;
+import com.example.zunezxapp.ui.orderdetail.OrderDetailViewModel;
 import com.example.zunezxapp.ui.productdetail.ProductDetailViewModel;
 import com.example.zunezxapp.ui.profile.ProfileViewModel;
 import com.example.zunezxapp.ui.register.RegisterViewModel;
@@ -80,6 +81,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel.class)
     abstract ViewModel bindRegisterViewModel(RegisterViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderDetailViewModel.class)
+    abstract ViewModel bindOrderDetailViewModel(OrderDetailViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

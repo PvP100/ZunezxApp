@@ -48,7 +48,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
                 binding.edtAddressUserProfile.setText(it.getAddress());
                 binding.edtEmailUserProfile.setText(it.getEmail());
                 binding.edtPhoneUserProfile.setText(it.getPhone());
-                Glide.with(requireContext()).load(it.getAvatarUrl()).into(binding.imgAvaProfile);
+                Glide.with(requireContext()).load(it.getAvatarUrl()).error(R.drawable.zune_logo).into(binding.imgAvaProfile);
                 if (it.getGender() == 0) {
                     binding.spinnerGenderProfile.setSelection(1);
                 } else {

@@ -38,6 +38,7 @@
             android:layout_height="0dp" >
 
             <TextView
+                android:visibility="gone"
                 android:gravity="center"
                 android:textSize="30sp"
                 android:text="Không tìm thấy sản phẩm"

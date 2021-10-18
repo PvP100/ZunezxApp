@@ -6,6 +6,7 @@ import com.example.zunezxapp.entity.HomeProduct;
 import com.example.zunezxapp.entity.LoginRespone;
 import com.example.zunezxapp.entity.NewPassword;
 import com.example.zunezxapp.entity.Order;
+import com.example.zunezxapp.entity.OrderDetail;
 import com.example.zunezxapp.entity.ProductDetail;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.base.entity.Result;
@@ -37,8 +38,8 @@ public interface ApiService {
     @GET("/api/products/clothes/{id}")
     Single<BaseObjectResponse<ProductDetail>> getProductDetail(@Path("id") String productId);
 
-    @GET("/api/customers/{customerId}/orders")
-    Single<BaseObjectResponse<Result<Order>>> getCustomerOrder(@Path("customerId") String customerId);
+    @GET("/api/order/customerorder/{customerid}")
+    Single<BaseObjectResponse<Result<Order>>> getCustomerOrder(@Path("customerid") String customerId);
 
     @POST("/api/auths/customer/{customerId}/newPassword")
     Single<BaseObjectResponse> changePassword(@Path("customerId") String customerId,
@@ -54,4 +55,7 @@ public interface ApiService {
     @POST("/api/auths/customers/register")
     Single<BaseObjectResponse> register(@Header("Authorization") String basicAuth,
                                                  @Body ProfileBody profileBody);
+
+    @GET("/api/order/getdetail/{id}")
+    Single<BaseObjectResponse<Result<OrderDetail>>> getOrderDetail(@Path("id") String orderId);
 }

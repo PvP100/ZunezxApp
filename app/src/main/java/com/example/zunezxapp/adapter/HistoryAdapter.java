@@ -1,5 +1,6 @@
 package com.example.zunezxapp.adapter;
 
+import android.graphics.Color;
 import android.view.View;
 
 import com.example.zunezxapp.R;
@@ -13,9 +14,11 @@ import java.util.List;
 public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
 
     private List<Order> listOrder = new ArrayList<>();
+    private OnClickDetailOrder onClickDetailOrder;
 
-    public void setListOrder(List<Order> list) {
+    public void setListOrder(List<Order> list, OnClickDetailOrder onClickDetailOrder) {
         listOrder = list;
+        this.onClickDetailOrder = onClickDetailOrder;
         notifyDataSetChanged();
     }
 
@@ -26,7 +29,7 @@ public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
 
     @Override
     protected BaseViewHolder solvedOnCreateViewHolder(HistoryItemBinding binding) {
-        return new HistoryViewHolder(binding);
+        return new HistoryViewHolder(binding, onClickDetailOrder);
     }
 
     @Override
@@ -39,19 +42,37 @@ public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
         return listOrder.size();
     }
 
-    class HistoryViewHolder extends BaseViewHolder<Order> {
+    class HistoryViewHolder extends BaseViewHolder<Order> implements View.OnClickListener {
 
         HistoryItemBinding binding;
+        OnClickDetailOrder onClickDetailOrder;
 
-        public HistoryViewHolder(HistoryItemBinding binding) {
+        public HistoryViewHolder(HistoryItemBinding binding, OnClickDetailOrder onClickDetailOrder) {
             super(binding.getRoot());
             this.binding = binding;
+            this.onClickDetailOrder = onClickDetailOrder;
         }
 
         @Override
         protected void bind(Order data) {
             binding.tvIdOrderItem.setText(data.getId());
-            binding.tvNgayDatHang.setText(String.valueOf(data.getCreatedDate()));
+            if (data.getIsCheck() == 0) {
+                binding.tvNgayDatHang.setText("Đang xử lý");
+                binding.tvNgayDatHang.setTextColor(Color.parseColor("#FFEC3D"));
+            } else {
+                binding.tvNgayDatHang.setText("Đơn hàng đã được xử lý");
+                binding.tvNgayDatHang.setTextColor(Color.parseColor("#33FF00") );
+            }
+            binding.getRoot().setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onClickDetailOrder.onClickOrder(listOrder.get(getAdapterPosition()).getId());
+        }
+    }
+
+    public interface OnClickDetailOrder {
+        void onClickOrder(String orderId);
     }
 }

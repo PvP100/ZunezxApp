@@ -83,6 +83,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                app:layout_constraintBottom_toBottomOf="@+id/tv_product_name_cart_item"
                 android:id="@+id/tv_price_cart"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="@+id/tv_product_name_cart_item"
