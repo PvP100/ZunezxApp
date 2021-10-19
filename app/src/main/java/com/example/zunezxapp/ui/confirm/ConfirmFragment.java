@@ -1,6 +1,7 @@
 package com.example.zunezxapp.ui.confirm;
 
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,6 +52,13 @@ public class ConfirmFragment extends BaseFragment<ConfirmViewModel, FragmentConf
                 binding.tvTotal.setText(format.format(tong) + "đ");
             }
         });
+        viewModel.getStatus().observe(this, it -> {
+            if (it) {
+                viewModel.deleteCart();
+                Toast.makeText(requireContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                getVC().replaceFragment(MainFragment.class, null);
+            }
+        });
         viewModel.getProfileMutableLiveData().observe(this, it -> {
             binding.tvCustomerNameConfirm.setText(it.getFullName());
             binding.tvAddressDetail.setText(it.getAddress());
@@ -78,7 +86,7 @@ public class ConfirmFragment extends BaseFragment<ConfirmViewModel, FragmentConf
     @Override
     public void onClick(View view) {
         if (view == binding.btnDatHangConfirm) {
-            getVC().replaceFragment(MainFragment.class, null);
+            viewModel.createOrder();
         } else {
             getVC().backFromAddFragment(null);
         }

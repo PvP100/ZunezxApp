@@ -1,13 +1,17 @@
 package com.example.zunezxapp.ui.confirm;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.zunezxapp.base.BaseViewModel;
 import com.example.zunezxapp.entity.Cart;
+import com.example.zunezxapp.entity.OrderBody;
 import com.example.zunezxapp.entity.Profile;
 import com.example.zunezxapp.preferences.SharedPref;
 import com.example.zunezxapp.repository.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -69,6 +73,41 @@ public class ConfirmViewModel extends BaseViewModel {
                 }, throwable -> {
 
                 }));
+    }
+
+    public void createOrder() {
+        List<Cart> check = realm.copyFromRealm(listCart);
+        compositeDisposable.add(repository.createOrder(new OrderBody(
+                sharedPref.getToken(), check
+        ))
+                .doOnSubscribe(disposable -> {
+                    loading.setValue(true);
+                })
+                .doFinally(() -> {
+                    loading.setValue(false);
+                })
+                .subscribe(
+                        baseObjectResponse -> {
+                            status.setValue(true);
+                        },
+                        throwable -> {
+                            status.setValue(false);
+                        }
+                ));
+    }
+
+    public void deleteCart() {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.deleteAll();
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Log.d("huhu", "onError: " + error.getLocalizedMessage());
+            }
+        });
     }
 
 }

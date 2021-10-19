@@ -6,6 +6,11 @@ public class OrderBody {
     private String customerID;
     private List<Cart> details;
 
+    public OrderBody(String customerID, List<Cart> details) {
+        this.customerID = customerID;
+        this.details = details;
+    }
+
     public String getCustomerID() {
         return customerID;
     }
