@@ -63,11 +63,11 @@ public class CategoryAdapter extends BaseAdapter<CategoryTitleItemBinding> {
 
         @Override
         public void onClick(View view) {
-            onClick.onCateClick(Integer.parseInt(homeCategoryList.get(getAdapterPosition()).getId()));
+            onClick.onCateClick(homeCategoryList.get(getAdapterPosition()).getId());
         }
     }
 
     public interface CategoryOnClickListener {
-        void onCateClick(int cateId);
+        void onCateClick(String cateId);
     }
 }

@@ -68,7 +68,7 @@ public class HomeViewModel extends BaseViewModel {
                 ));
     }
 
-    public void getHomeProduct(int cateId) {
+    public void getHomeProduct(String cateId) {
         compositeDisposable.add(repository.getHomeProduct(cateId)
                 .doOnSubscribe(disposable -> {
                     loading.setValue(true);

@@ -34,7 +34,7 @@ public interface ApiService {
     Single<BaseObjectResponse<Result<HomeCategory>>> getHomeCategory();
 
     @GET("/api/products/categorys/{id}")
-    Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct(@Path("id") int cateId);
+    Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct(@Path("id") String cateId);
 
     @GET("/api/products/clothes/{id}")
     Single<BaseObjectResponse<ProductDetail>> getProductDetail(@Path("id") String productId);
