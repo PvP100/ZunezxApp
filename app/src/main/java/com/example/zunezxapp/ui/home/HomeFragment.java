@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
             categoryAdapter.setHomeCategoryList(it);
             binding.swipeToRefreshHome.setRefreshing(false);
         });
-        viewModel.getHomeProduct(0);
+        viewModel.getHomeProduct("0");
         viewModel.getListHomeProduct().observe(this, it -> {
             homeAdapter.setHome(it);
             binding.swipeToRefreshHome.setRefreshing(false);
@@ -84,7 +84,7 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
         if (view == binding.icCartHome) {
             getVC().addFragment(CartFragment.class, null, true, true);
         } else if (view == binding.tvAllHome) {
-            viewModel.getHomeProduct(0);
+            viewModel.getHomeProduct("0");
         }
     }
 
@@ -97,13 +97,13 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
 
     @Override
     public void onRefresh() {
-        viewModel.getHomeProduct(0);
+        viewModel.getHomeProduct("0");
         viewModel.getCategory();
         binding.swipeToRefreshHome.setRefreshing(false);
     }
 
     @Override
-    public void onCateClick(int cateId) {
+    public void onCateClick(String cateId) {
         viewModel.getHomeProduct(cateId);
     }
 

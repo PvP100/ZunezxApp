@@ -48,7 +48,7 @@ public class Repository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct(int cateId) {
+    public Single<BaseObjectResponse<Result<HomeProduct>>> getHomeProduct(String cateId) {
         return apiService.getHomeProduct(cateId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
