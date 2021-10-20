@@ -10,6 +10,7 @@ import com.example.zunezxapp.adapter.ConfirmAdapter;
 import com.example.zunezxapp.adapter.OrderDetailAdapter;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentOrderDetailBinding;
+import com.example.zunezxapp.entity.OrderDetail;
 
 public class OrderDetailFragment extends BaseFragment<OrderDetailViewModel, FragmentOrderDetailBinding> implements View.OnClickListener {
 
@@ -40,7 +41,12 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailViewModel, Frag
         binding.rcvConfirm.setAdapter(confirmAdapter);
         binding.rcvConfirm.setLayoutManager(new LinearLayoutManager(requireContext()));
         viewModel.getListOrder().observe(this, it -> {
+            int tong = 0;
             confirmAdapter.setListOrderConfirm(it);
+            for (OrderDetail order: it) {
+                tong += order.getTotal();
+            }
+            binding.tvTotalOrderDetail.setText(String.valueOf(tong));
         });
     }
 
