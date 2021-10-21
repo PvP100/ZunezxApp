@@ -11,7 +11,7 @@ import com.example.zunezxapp.entity.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryAdapter extends BaseAdapter<HistoryItemBinding> {
+public class OrderAdapter extends BaseAdapter<HistoryItemBinding> {
 
     private List<Order> listOrder = new ArrayList<>();
     private OnClickDetailOrder onClickDetailOrder;

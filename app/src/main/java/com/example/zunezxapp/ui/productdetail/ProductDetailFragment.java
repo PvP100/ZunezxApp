@@ -43,6 +43,13 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailViewModel, 
     @Override
     protected void initView() {
         format = new DecimalFormat("###,###,###");
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
         if (getArguments().getString("productId") != null) {
             viewModel.getProductDetail(getArguments().getString("productId"));
         }

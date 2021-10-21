@@ -52,7 +52,13 @@ public class HomeFragment extends BaseFragment<HomeViewModel, FragmentHomeBindin
         viewModel.getHomeProduct("0");
         viewModel.getListHomeProduct().observe(this, it -> {
             homeAdapter.setHome(it);
-            binding.swipeToRefreshHome.setRefreshing(false);
+        });
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                binding.swipeToRefreshHome.setRefreshing(true);
+            } else {
+                binding.swipeToRefreshHome.setRefreshing(false);
+            }
         });
         binding.rcvAllHome.setAdapter(categoryAdapter);
         binding.rcvAllHome.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));

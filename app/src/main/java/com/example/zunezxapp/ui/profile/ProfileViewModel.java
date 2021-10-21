@@ -13,10 +13,14 @@ import com.example.zunezxapp.repository.Repository;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
@@ -115,6 +119,31 @@ public class ProfileViewModel extends BaseViewModel {
     public void logout() {
         sharedPref.setToken(null);
         sharedPref.setStatus(false);
+    }
+
+    public void uploadAvatar(String strRealPath) {
+        File file = new File(strRealPath);
+        RequestBody requestBody = RequestBody.create(file, MediaType.parse("multipart/form-data"));
+        MultipartBody.Part part = MultipartBody.Part.createFormData("avatar", file.getName(), requestBody);
+
+
+        compositeDisposable.add(repository.uploadAvatar(sharedPref.getToken(), part)
+                .doOnSubscribe(disposable -> {
+                    loading.setValue(true);
+                })
+                .doFinally(() -> {
+                    loading.setValue(false);
+                })
+                .subscribe(
+                        baseObjectResponse -> {
+                            status.setValue(true);
+                        },
+                        throwable -> {
+                            status.setValue(false);
+                            messageError.setValue(throwable.getLocalizedMessage());
+                            Log.d("chekchek", "uploadAvatar: " + throwable.getLocalizedMessage());
+                        }
+                ));
     }
 
 }

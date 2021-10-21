@@ -1,6 +1,7 @@
 package com.example.zunezxapp.ui.categorydetail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -30,6 +31,13 @@ public class SearchFragment extends BaseFragment<SearchViewModel, FragmentSearch
 
     @Override
     protected void initView() {
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
         viewModel.search(getArguments().getString("search"));
         SearchAdapter searchAdapter = new SearchAdapter();
         viewModel.getListHomeProduct().observe(this, it -> {

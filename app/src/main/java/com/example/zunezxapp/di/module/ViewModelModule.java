@@ -10,7 +10,7 @@ import com.example.zunezxapp.ui.cart.CartViewModel;
 import com.example.zunezxapp.ui.categorydetail.SearchViewModel;
 import com.example.zunezxapp.ui.changepassword.ChangePasswordViewmodel;
 import com.example.zunezxapp.ui.confirm.ConfirmViewModel;
-import com.example.zunezxapp.ui.history.HistoryViewModel;
+import com.example.zunezxapp.ui.order.OrderViewModel;
 import com.example.zunezxapp.ui.home.HomeViewModel;
 import com.example.zunezxapp.ui.login.LoginViewModel;
 import com.example.zunezxapp.ui.orderdetail.OrderDetailViewModel;
@@ -59,8 +59,8 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(HistoryViewModel.class)
-    abstract ViewModel bindHistoryViewModel(HistoryViewModel viewModel);
+    @ViewModelKey(OrderViewModel.class)
+    abstract ViewModel bindHistoryViewModel(OrderViewModel viewModel);
 
     @Binds
     @IntoMap

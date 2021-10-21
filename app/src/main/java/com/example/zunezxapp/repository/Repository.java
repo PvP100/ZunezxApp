@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.MultipartBody;
 
 public class Repository {
     private ApiService apiService;
@@ -98,6 +99,12 @@ public class Repository {
 
     public Single<BaseObjectResponse> createOrder(OrderBody body) {
         return apiService.createOrder(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<BaseObjectResponse> uploadAvatar(String customerId, MultipartBody.Part avatar) {
+        return apiService.uploadAvatarCustomer(customerId, avatar)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

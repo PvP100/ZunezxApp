@@ -61,12 +61,16 @@ public class LoginFragment extends BaseFragment<LoginViewModel, FragmentLoginBin
     @Override
     public void onClick(View view) {
         if (view == binding.btnLogin) {
-            viewModel.userLogin(binding.edtUsername.getText().toString().trim(), binding.edtPassword.getText().toString().trim());
-            viewModel.getMessage().observe(this, it -> {
-                if (it) {
-                    getVC().replaceFragment(MainFragment.class, null);
-                }
-            });
+            if (binding.tvUsername.getText().toString().trim().length() > 0 && binding.tvPassword.getText().toString().trim().length() > 0) {
+                viewModel.userLogin(binding.edtUsername.getText().toString().trim(), binding.edtPassword.getText().toString().trim());
+                viewModel.getMessage().observe(this, it -> {
+                    if (it) {
+                        getVC().replaceFragment(MainFragment.class, null);
+                    }
+                });
+            } else {
+                Toast.makeText(requireContext(), "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!", Toast.LENGTH_SHORT).show();
+            }
         }
         if (view == binding.tvDangKyLogin) {
             getVC().addFragment(RegisterFragment.class, null, true, true);

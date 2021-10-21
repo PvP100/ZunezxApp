@@ -15,11 +15,14 @@ import com.example.zunezxapp.entity.ProfileBody;
 import com.example.zunezxapp.entity.User;
 
 import io.reactivex.rxjava3.core.Single;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -30,7 +33,7 @@ public interface ApiService {
     @GET("/api/customers/profiles/{id}")
     Single<BaseObjectResponse<Profile>> getProfile(@Path("id") String userId);
 
-    @GET("/api/category/categories")
+    @GET("/api/category/categories?sortType=asc")
     Single<BaseObjectResponse<Result<HomeCategory>>> getHomeCategory();
 
     @GET("/api/products/categorys/{id}")
@@ -62,4 +65,8 @@ public interface ApiService {
 
     @POST("/api/order/addorder")
     Single<BaseObjectResponse> createOrder(@Body OrderBody body);
+
+    @Multipart
+    @POST("/api/customers/uploadavatar/{ctmID}")
+    Single<BaseObjectResponse> uploadAvatarCustomer(@Path("ctmID") String customerId, @Part MultipartBody.Part avatar);
 }

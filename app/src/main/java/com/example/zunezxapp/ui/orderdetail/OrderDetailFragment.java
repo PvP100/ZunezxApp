@@ -38,6 +38,14 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailViewModel, Frag
             viewModel.getOrderDetail(getArguments().getString("id"));
         }
 
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
+
         binding.rcvConfirm.setAdapter(confirmAdapter);
         binding.rcvConfirm.setLayoutManager(new LinearLayoutManager(requireContext()));
         viewModel.getListOrder().observe(this, it -> {

@@ -15,6 +15,8 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 import io.realm.Realm;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class ProductDetailViewModel extends BaseViewModel {
     private final Repository repository;

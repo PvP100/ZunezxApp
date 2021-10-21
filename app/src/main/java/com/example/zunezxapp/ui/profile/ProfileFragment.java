@@ -23,22 +23,32 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.zunezxapp.R;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentProfileBinding;
 import com.example.zunezxapp.ui.changepassword.ChangePasswordFragment;
 import com.example.zunezxapp.ui.login.LoginFragment;
 import com.example.zunezxapp.ui.login.LoginViewModel;
+import com.example.zunezxapp.ultis.RealPathUtil;
+
+import java.util.Random;
 
 public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProfileBinding> implements View.OnClickListener {
 
-    Uri mUri;
+    private Uri mUri;
+
+    private Random random = new Random();
+
+    private int updateAva = 0;
 
     ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
+                        updateAva = 1;
                         Intent data = result.getData();
                         if (data == null) {
                             return;
@@ -77,6 +87,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
                 binding.icLogout.setVisibility(View.VISIBLE);
                 binding.icCancel.setVisibility(View.INVISIBLE);
                 binding.icUpdate.setVisibility(View.INVISIBLE);
+                binding.imgAvaProfile.setEnabled(false);
                 binding.edtEmailUserProfile.setEnabled(false);
                 binding.edtAddressUserProfile.setEnabled(false);
                 binding.edtBirthdayUserProfile.setEnabled(false);
@@ -86,7 +97,13 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
                 binding.edtAddressUserProfile.setText(it.getAddress());
                 binding.edtEmailUserProfile.setText(it.getEmail());
                 binding.edtPhoneUserProfile.setText(it.getPhone());
-                Glide.with(requireContext()).load(it.getAvatarUrl()).error(R.drawable.zune_logo).into(binding.imgAvaProfile);
+                int randomInt = random.nextInt();
+                Glide.with(requireContext())
+                        .applyDefaultRequestOptions(new RequestOptions()
+                                .centerCrop().error(R.drawable.zune_logo)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE))
+                        .load(it.getAvatarUrl() + "?" + randomInt)
+                        .into(binding.imgAvaProfile);
                 if (it.getGender() == 0) {
                     binding.spinnerGenderProfile.setSelection(1);
                 } else {
@@ -98,9 +115,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
     }
 
     @Override
-    protected void initData() {
-
-    }
+    protected void initData() {}
 
     @Override
     protected void initListener() {
@@ -120,6 +135,13 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
 
     @Override
     public void onClick(View view) {
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
         if (view == binding.btnChangePasswordProfile) {
             getVC().addFragment(ChangePasswordFragment.class, null, true, true);
         } else if (view == binding.icLogout) {
@@ -128,6 +150,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
         } else if (view == binding.icCancel) {
             viewModel.getProfile();
         } else if (view == binding.btnChinhSuaHoSo) {
+            binding.imgAvaProfile.setEnabled(true);
             binding.edtNameProfile.setEnabled(true);
             binding.icLogout.setVisibility(View.GONE);
             binding.icCancel.setVisibility(View.VISIBLE);
@@ -140,6 +163,10 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
         } else if (view == binding.edtBirthdayUserProfile) {
             datePicker.pickDate(binding.edtBirthdayUserProfile);
         } else if (view == binding.icUpdate) {
+            if (updateAva == 1) {
+                String strRealPath = RealPathUtil.getRealPath(requireActivity(), mUri);
+                viewModel.uploadAvatar(strRealPath);
+            }
             int gender = 0;
             if (binding.spinnerGenderProfile.getSelectedItem().toString().equals("Nam")) {
                 gender = 1;
@@ -173,7 +200,7 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
     private void takePermission() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) {
             try {
-                openGallery();
+                openGallery11();
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
@@ -193,6 +220,13 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
         mActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
     }
 
+    private void openGallery11() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setData(Uri.parse(String.format("package:%s", getActivity().getApplicationContext().getPackageName())));
+        startActivityForResult(intent, 100);
+    }
+    
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -200,9 +234,8 @@ public class ProfileFragment extends BaseFragment<ProfileViewModel, FragmentProf
             if (requestCode == 100) {
                 if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) {
                     if (Environment.isExternalStorageManager()) {
-                        Toast.makeText(requireContext(), "Permission Grandted in android 11", Toast.LENGTH_SHORT).show();
-                    } else {
-                        takePermission();
+                        mUri = data.getData();
+                        Toast.makeText(requireContext(), "android 11", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

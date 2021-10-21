@@ -1,4 +1,4 @@
-package com.example.zunezxapp.ui.history;
+package com.example.zunezxapp.ui.order;
 
 import android.os.Bundle;
 
@@ -7,19 +7,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.zunezxapp.R;
-import com.example.zunezxapp.adapter.HistoryAdapter;
+import com.example.zunezxapp.adapter.OrderAdapter;
 import com.example.zunezxapp.base.BaseFragment;
-import com.example.zunezxapp.base.BaseViewModel;
-import com.example.zunezxapp.databinding.FragmentHistoryBinding;
+import com.example.zunezxapp.databinding.FragmentOrderBinding;
 import com.example.zunezxapp.ui.orderdetail.OrderDetailFragment;
 
-public class HistoryFragment extends BaseFragment<HistoryViewModel, FragmentHistoryBinding> implements SwipeRefreshLayout.OnRefreshListener, HistoryAdapter.OnClickDetailOrder {
+public class OrderFragment extends BaseFragment<OrderViewModel, FragmentOrderBinding> implements SwipeRefreshLayout.OnRefreshListener, OrderAdapter.OnClickDetailOrder {
 
-    private HistoryAdapter historyAdapter;
+    private OrderAdapter orderAdapter;
 
     @Override
-    protected HistoryViewModel creatViewModel() {
-        return new ViewModelProvider(this, viewModelFactory).get(HistoryViewModel.class);
+    protected OrderViewModel creatViewModel() {
+        return new ViewModelProvider(this, viewModelFactory).get(OrderViewModel.class);
     }
 
     @Override
@@ -29,18 +28,25 @@ public class HistoryFragment extends BaseFragment<HistoryViewModel, FragmentHist
 
     @Override
     protected int layoutId() {
-        return R.layout.fragment_history;
+        return R.layout.fragment_order;
     }
 
     @Override
     protected void initView() {
-        historyAdapter = new HistoryAdapter();
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
+        orderAdapter = new OrderAdapter();
         viewModel.getCustomerOrder();
         viewModel.getOrderLiveData().observe(this, it -> {
-            historyAdapter.setListOrder(it.getData().getResult(), this);
+            orderAdapter.setListOrder(it.getData().getResult(), this);
             binding.swipeToRefreshOrder.setRefreshing(false);
         });
-        binding.rcvHistory.setAdapter(historyAdapter);
+        binding.rcvHistory.setAdapter(orderAdapter);
         binding.rcvHistory.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 

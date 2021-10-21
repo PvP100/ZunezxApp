@@ -44,6 +44,13 @@ public class CartFragment extends BaseFragment<CartViewModel, FragmentCartBindin
 
     @Override
     protected void initView() {
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
         format = new DecimalFormat("###,###,###");
         viewModel.getCart();
         cartAdapter = new CartAdapter();
