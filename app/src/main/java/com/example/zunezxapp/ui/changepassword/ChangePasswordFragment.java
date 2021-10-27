@@ -27,6 +27,13 @@ public class ChangePasswordFragment extends BaseFragment<ChangePasswordViewmodel
 
     @Override
     protected void initView() {
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
         viewModel.getStatus().observe(this, it -> {
             if (it) {
                 Toast.makeText(requireActivity(), "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();

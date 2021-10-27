@@ -47,6 +47,16 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
                 getVC().replaceFragment(LoginFragment.class, null);
             }
         });
+        viewModel.getMessageError().observe(this, it -> {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show();
+        });
+        viewModel.getLoading().observe(this, it -> {
+            if (it) {
+                loadingDialog.show();
+            } else {
+                loadingDialog.hide();
+            }
+        });
     }
 
     @Override
@@ -70,18 +80,36 @@ public class RegisterFragment extends BaseFragment<RegisterViewModel, FragmentRe
     @Override
     public void onClick(View view) {
         if (view == binding.btnRegister) {
-            int gender = 0;
-            if(binding.spinnerGenderRegis.getSelectedItem().toString().equals("Nam")) {
-                gender = 1;
+            if (
+                    binding.edtPasswordRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtRePasswordRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtAddressRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtPhoneRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtEmailRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtBirthdayRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtHoRegis.getText().toString().trim().length() > 0 &&
+                    binding.edtTenRegis.getText().toString().trim().length() > 0
+            ) {
+                if (binding.edtPasswordRegis.getText().toString().trim().equals(binding.edtRePasswordRegis.getText().toString().trim())) {
+                    int gender = 0;
+                    if(binding.spinnerGenderRegis.getSelectedItem().toString().equals("Nam")) {
+                        gender = 1;
+                    }
+                    viewModel.register(
+                            binding.edtPasswordRegis.getText().toString().trim(),
+                            binding.edtAddressRegis.getText().toString().trim(),
+                            binding.edtBirthdayRegis.getText().toString().trim(),
+                            binding.edtEmailRegis.getText().toString().trim(),
+                            binding.edtHoRegis.getText().toString().trim() + " " + binding.edtTenRegis.getText().toString().trim(),
+                            gender, binding.edtPhoneRegis.getText().toString().trim()
+                    );
+                } else {
+                    Toast.makeText(requireContext(), "Mật khẩu nhập lại không khớp!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(requireContext(), "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             }
-            viewModel.register(
-                    binding.edtPasswordRegis.getText().toString().trim(),
-                    binding.edtAddressRegis.getText().toString().trim(),
-                    binding.edtBirthdayRegis.getText().toString().trim(),
-                    binding.edtEmailRegis.getText().toString().trim(),
-                    binding.edtHoRegis.getText().toString().trim() + " " + binding.edtTenRegis.getText().toString().trim(),
-                    gender, binding.edtPhoneRegis.getText().toString().trim()
-            );
+
         } else if (view == binding.tvDangNhapRegis) {
             getVC().backFromAddFragment(null);
         } else if (view == binding.edtBirthdayRegis) {

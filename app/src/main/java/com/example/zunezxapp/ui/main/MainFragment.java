@@ -7,7 +7,7 @@ import com.example.zunezxapp.R;
 import com.example.zunezxapp.adapter.HomeViewPagerAdapter;
 import com.example.zunezxapp.base.BaseFragment;
 import com.example.zunezxapp.databinding.FragmentMainBinding;
-import com.example.zunezxapp.ui.history.HistoryFragment;
+import com.example.zunezxapp.ui.order.OrderFragment;
 import com.example.zunezxapp.ui.home.HomeFragment;
 import com.example.zunezxapp.ui.profile.ProfileFragment;
 
@@ -92,7 +92,7 @@ public class MainFragment extends BaseFragment<MainFragmentViewModel, FragmentMa
         List<Fragment> listFragment = new ArrayList<>();
         listFragment.add(new HomeFragment());
         listFragment.add(new ProfileFragment());
-        listFragment.add(new HistoryFragment());
+        listFragment.add(new OrderFragment());
         return listFragment;
     }
 }

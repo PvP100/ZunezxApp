@@ -1,4 +1,4 @@
-package com.example.zunezxapp.ui.history;
+package com.example.zunezxapp.ui.order;
 
 import android.util.Log;
 
@@ -13,7 +13,7 @@ import com.example.zunezxapp.repository.Repository;
 
 import javax.inject.Inject;
 
-public class HistoryViewModel extends BaseViewModel {
+public class OrderViewModel extends BaseViewModel {
 
     private final Repository repository;
     private final SharedPref sharedPref;
@@ -29,7 +29,7 @@ public class HistoryViewModel extends BaseViewModel {
     }
 
     @Inject
-    public HistoryViewModel(Repository repository, SharedPref sharedPref) {
+    public OrderViewModel(Repository repository, SharedPref sharedPref) {
         this.repository = repository;
         this.sharedPref = sharedPref;
     }
